@@ -11,6 +11,10 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+*:focus{
+    outline: none;
+}
+
 #root{
     position: relative;
 
@@ -203,6 +207,16 @@ label{
     }
 }
 
+.info-msg{
+    padding: 15px 30px;
+    background-color: var(--analogOrange);
+
+    p{
+        margin: 0;
+        padding: 0;
+    }
+}
+
 .success-msg{
     padding: 15px 30px;
     color: green;
@@ -286,6 +300,112 @@ label{
 
 }
 
+.cart-container{
+    margin: 0 auto;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 2em 0;
+    flex-direction: column;
+
+    .empty-plate{
+        margin: 100px 0px;
+        width: 90%;
+        filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.493));
+    }
+
+    .delivery-man{
+        margin: 50px 0px;
+        width: 50%;
+        filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.493));
+        animation: shake 300ms linear 0ms infinite both;
+        max-width: 500px;
+        min-width: 300px;
+    }
+
+    .order-button-container{
+        margin-top: 25px;
+        width: 40%;
+        max-width: 300px;
+    }
+
+    .cart-total-container{
+        display: flex;
+        text-align: right;
+        flex-direction: column;
+        align-items: flex-end;
+        width: 90%;
+        margin-top: .5em;
+        p,h3{
+            margin: .3em 0;
+        }
+
+        h3{
+            padding-top: .3em;
+            border-top: 2px solid var(--accentOrange);
+        }
+    }
+
+    table{
+        width: 100%;
+        border-bottom: 3px solid var(--accentOrange);
+        border-collapse: collapse;
+        table-layout: fixed;
+
+        .amount-input{
+            width:30px;
+            padding: .5em 0 .5em .5em;
+            font-size: 1em;
+        }
+
+        .table-small-column{
+            width:12%;
+            min-width: 72px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .table-image-column{
+            width: 15%;
+        }
+        .table-title-column{
+            width: 20%;
+        }
+
+        td,th{
+            padding: 15px 0px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+        thead tr{
+            border-bottom: 3px solid var(--accentOrange);  
+        }
+
+        tbody tr{
+            border-bottom: 1px solid var(--accentOrange);
+        }
+
+        img{
+            width: 100%;
+            object-fit: contain;
+            max-height: 125px;
+        }
+    }
+}
+
+@keyframes shake{
+    0%{
+        transform: translateY(2px);
+    }
+    50%{
+        transform: translateY(-2px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}
 
 @media (max-width: 640px) {
     .container{

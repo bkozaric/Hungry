@@ -32,7 +32,7 @@ function Header() {
                     <ul>
                         <li><a href="/cart"><FontAwesomeIcon icon={faShoppingCart} /></a></li>
                         <li><a href="/profile"><FontAwesomeIcon icon={faUser} /></a></li>
-                        <li><a onClick={() => logout()} href="#"><FontAwesomeIcon icon={faSignInAlt} /></a></li>
+                        <li><a onClick={() => logout()} href="#"><FontAwesomeIcon icon={faSignOutAlt} /></a></li>
                     </ul>
                 </nav>
             </div>
@@ -47,7 +47,7 @@ function Header() {
                 <nav className="navigation">
                     <ul>
                         <li><a href="/cart"><FontAwesomeIcon icon={faShoppingCart} /></a></li>
-                        <li><a href="/login"><FontAwesomeIcon icon={faSignOutAlt} /></a></li>
+                        <li><a href="/login"><FontAwesomeIcon icon={faSignInAlt} /></a></li>
                     </ul>
                 </nav>
             </div>

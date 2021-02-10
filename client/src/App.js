@@ -5,6 +5,8 @@ import FoodContainer from "./components/FoodContainer"
 import Login from "./components/Login"
 import Registration from "./components/Register"
 import Logout from "./components/Logout"
+import Cart from "./components/Cart"
+import Profile from "./components/Profile"
 import VerifyEmail from "./components/VerifyEmail"
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -41,12 +43,14 @@ function App() {
               <Route path="/register" component={Registration}></Route>
               <Route path="/logout" component={Logout}></Route>
               <Route path="/verify/:token" component={VerifyEmail}></Route>
+              <Route path="/cart" component={Cart}></Route>
+              <Route exact path="/profile" component={Profile}></Route>
+              <Route path="/profile/orders/:oid" component={Profile}></Route>
         {/*   
               
               <Route path="/edit/:id" component={Edit}></Route>
               <Route path="/view/:id" component={ViewAd}></Route>
               <Route path="/createAd" component={CreateAd}></Route>
-              <Route path="/cart" component={Cart}></Route>
               <Route exact path="/profile" component={Profile}></Route>
               <Route path="/profile/order/:oid" component={Profile}></Route>
                */}

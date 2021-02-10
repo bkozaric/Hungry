@@ -35,6 +35,7 @@ app.use(session({
 
 app.use("/api/user", require("./routes/user"));
 app.use("/api/food", require("./routes/food"));
+app.use("/api/order", require("./routes/order"));
 
 
 if (process.env.NODE_ENV === "production") {

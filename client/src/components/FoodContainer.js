@@ -9,15 +9,12 @@ function FoodContainer() {
         try {
             const response = await fetch("/api/food/");
             const foodJson = await response.json();
-            //console.log(foodJson);
-            foodJson.map(f => console.log(f));
             setFoods(foodJson);
 
         }
         catch (err) {
             console.error(err);
         }
-
 
     }
 
@@ -28,7 +25,7 @@ function FoodContainer() {
     if (foods.length > 0) {
         return (
             <div className="food-container">
-                {foods.map((food, k) => <FoodCard key={k} food={food} />)}
+                {foods.map((food) => <FoodCard key={food._id} id={food._id} food={food} />)}
             </div>
         )
     }
