@@ -2,6 +2,10 @@ import React, { useEffect, useState, useContext } from 'react'
 
 import { SessionContext } from '../../SessionContext';
 import TabPicker from "./TabPicker";
+import UserActions from "./UserActions";
+import UserInfo from "./UserInfo";
+import DeleteAccount from "./DeleteAccount";
+import ChangePassword from "./ChangePassword";
 
 const Profile = (props) => {
 
@@ -10,16 +14,42 @@ const Profile = (props) => {
     const [orders, setOrders] = useState([]);
     const [ordersFetched, setOrdersFetched] = useState(null);
 
+    const [userInfo, setUserInfo] = useState(null);
+    //const [userInfoFetched, setUserInfoFetched] = useState(null);
+
     const [currentPreviewOrder, setCurrentPreviewOrder] = useState(null);
 
     const [currentTab, setCurrentTab] = useState(0);
 
+
+    const PROFILE_ACTIONS = {
+        VIEW_INFO: 0,
+        EDIT_INFO: 1,
+        CHANGE_PW: 2,
+        DELETE_ACCOUNT: 3
+    }
+    const [profileAction, setProfileAction] = useState(PROFILE_ACTIONS.VIEW_INFO);
+
+
+
     const getUserOrders = async () => {
         try {
-            const response = await fetch("/api/order/byUser/" + sessionInfo.userId);
+            const response = await fetch(`/api/order/byUser/${sessionInfo.userId}`);
             const ordersJson = await response.json();
             setOrdersFetched(true);
             setOrders(ordersJson);
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+
+    const getUserInfo = async () => {
+        try {
+            const response = await fetch(`/api/user/userInfo/${sessionInfo.userId}`);
+            const userInfoJson = await response.json();
+            setUserInfo(userInfoJson)
+            //setUserInfoFetched(true);
         }
         catch (err) {
             console.error(err);
@@ -37,19 +67,20 @@ const Profile = (props) => {
     }
 
     const selectPreviewOrder = (oId) => {
-        console.log(oId);
         setCurrentPreviewOrder(orders.find(order => order._id === oId));
     }
 
     const changeTab = (tabId) => {
         setCurrentTab(tabId);
         selectPreviewOrder(null);
+        setProfileAction(PROFILE_ACTIONS.VIEW_INFO);
     }
 
 
     useEffect(() => {
         if (sessionInfo.logged) {
             getUserOrders();
+            getUserInfo();
         }
     }, [sessionInfo]);
 
@@ -89,7 +120,7 @@ const Profile = (props) => {
                         <div className="page-container">
                             <div className="order-list">
                                 {orders.map((order, k) =>
-                                    <div onClick={() => selectPreviewOrder(order._id)} className={currentPreviewOrder ? (currentPreviewOrder._id === order._id ? "order-pick highlight-order-pick" : "order-pick") : "order-pick"} key={k}>
+                                    <div onClick={() => selectPreviewOrder(order._id)} className={currentPreviewOrder?._id === order._id ? "order-pick highlight-order-pick" : "order-pick"} key={k}>
                                         {order._id}
                                     </div>)}
                             </div>
@@ -143,15 +174,60 @@ const Profile = (props) => {
             return null;
         }
         if (currentTab === 1) {
-            return (
-                <div className="profile-container">
-                    <TabPicker changeTab={changeTab} currentTab={0} />
-                    <div className="page-container">
-                        Just profile settings man.
-                    </div>
+            if (!userInfo) {
+                return null;
+            }
+            else {
+                if (profileAction === PROFILE_ACTIONS.EDIT_INFO) {
+                    return (
+                        <div className="profile-container">
+                            <TabPicker changeTab={changeTab} currentTab={1} />
+                            <div className="page-container">
+                                <div className="user-info-wrapper">
+                                    <p>EDIT INFOOOO</p>
+                                    <UserActions setProfileAction={setProfileAction} PROFILE_ACTIONS={PROFILE_ACTIONS} />
+                                </div>
+                            </div>
+                        </div>)
+                }
+                if (profileAction === PROFILE_ACTIONS.CHANGE_PW) {
+                    return (
+                        <div className="profile-container">
+                            <TabPicker changeTab={changeTab} currentTab={1} />
+                            <div className="page-container">
+                                <div className="user-info-wrapper">
+                                    <ChangePassword />
+                                    <UserActions setProfileAction={setProfileAction} PROFILE_ACTIONS={PROFILE_ACTIONS} />
+                                </div>
+                            </div>
+                        </div>)
+                }
+                if (profileAction === PROFILE_ACTIONS.DELETE_ACCOUNT) {
+                    return (
+                        <div className="profile-container">
+                            <TabPicker changeTab={changeTab} currentTab={1} />
+                            <div className="page-container">
+                                <div className="user-info-wrapper">
+                                    <DeleteAccount sessionInfo={sessionInfo} />
+                                    <UserActions setProfileAction={setProfileAction} PROFILE_ACTIONS={PROFILE_ACTIONS} />
+                                </div>
+                            </div>
+                        </div>)
+                }
+                return (
+                    <div className="profile-container">
+                        <TabPicker changeTab={changeTab} currentTab={1} />
+                        <div className="page-container">
+                            <div className="user-info-wrapper">
+                                <UserInfo userInfo={userInfo} />
+                                <UserActions setProfileAction={setProfileAction} PROFILE_ACTIONS={PROFILE_ACTIONS} />
+                            </div>
+                        </div>
 
-                </div>
-            )
+                    </div>
+                )
+
+            }
         }
     }
     else if (sessionInfo.logged === 0) {

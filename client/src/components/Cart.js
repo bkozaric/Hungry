@@ -36,6 +36,11 @@ const Cart = () => {
         }
     }
 
+    const clearCart = () => {
+        localStorage.removeItem("cart");
+        setCart([]);
+    }
+
 
     const getCart = () => {
         let cartCurrent = JSON.parse(localStorage.getItem("cart"));
@@ -94,7 +99,8 @@ const Cart = () => {
                     </div>
                     {sessionInfo.logged ?
                         <div className="order-button-container">
-                            <button className="submit-button" onClick={() => orderFood()}>Order</button>
+                            <button className="clear-cart-button" onClick={() => clearCart()}>Clear cart</button>
+                            <button className="submit-order-button" onClick={() => orderFood()}>Order</button>
                         </div>
                         :
                         <p className="info-msg">

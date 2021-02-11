@@ -61,7 +61,7 @@ const Login = () => {
                 }}
             >
                 {({ values, setFieldValue, errors, touched, handleSubmit }) => (
-                    <form className="input-info-container" onSubmit={handleSubmit}>
+                    <form className="input-info-container login-form" onSubmit={handleSubmit}>
                         <div className="input-row">
                             <div className="input-column">
                                 <label htmlFor="email">Email:</label>

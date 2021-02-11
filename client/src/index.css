@@ -3,12 +3,14 @@ body {
   --accentOrange: #e2c60e;
   --analogOrange: #ebd723;
   --mainYellow: #f5eb39;
+  --darkOrange: rgb(228, 94, 17);
   --gridItemSize: 350px;
   margin: 0 auto;
   background-color: var(--mainYellow);
   font-family: 'Roboto';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 *:focus {
@@ -138,6 +140,7 @@ body {
           box-sizing: border-box;
   -webkit-transition: all 150ms ease-in-out;
   transition: all 150ms ease-in-out;
+  cursor: pointer;
 }
 
 .submit-button:hover {
@@ -163,6 +166,10 @@ body {
   row-gap: 1em;
   width: 100%;
   max-width: 600px;
+}
+
+.input-info-container.login-form {
+  max-width: 300px;
 }
 
 .double-input-container {
@@ -402,8 +409,39 @@ label {
 
 .cart-container .order-button-container {
   margin-top: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-width: 400px;
   width: 40%;
-  max-width: 300px;
+  max-width: 600px;
+  -webkit-column-gap: 20px;
+          column-gap: 20px;
+}
+
+.cart-container .order-button-container button {
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+  cursor: pointer;
+  padding: 10px 20px;
+  border: none;
+  color: white;
+  background-color: var(--darkOrange);
+  text-transform: uppercase;
+  font-weight: bold;
+  width: 200px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.cart-container .order-button-container button.submit-order-button {
+  background-color: #3bad1f;
+}
+
+.cart-container .order-button-container button:hover {
+  letter-spacing: 1px;
+  -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.219);
+          box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.219);
 }
 
 .cart-container .cart-total-container {
@@ -505,7 +543,7 @@ label {
 }
 
 .profile-container .order-info .order-details .cancel-order {
-  background-color: #e45e11;
+  background-color: var(--darkOrange);
   color: white;
   border: none;
   font-size: 15px;
@@ -662,6 +700,286 @@ label {
   font-weight: 700;
 }
 
+.profile-container .user-info-wrapper {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.profile-container .user-info-wrapper .user-info-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.profile-container .user-info-wrapper .user-info-section .change-password-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.profile-container .user-info-wrapper .user-info-section .change-password-form .input-row {
+  max-width: 300px;
+}
+
+.profile-container .user-info-wrapper .user-info-section .change-password-form .increase-bmargin {
+  margin-bottom: 35px;
+}
+
+.profile-container .user-info-wrapper .user-info-section .change-password-form input {
+  border-left: 5px solid var(--mainYellow);
+}
+
+.profile-container .user-info-wrapper .user-info-section .change-password-form .confirm-password-change-button {
+  padding: 10px 20px;
+  border: none;
+  color: white;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+  cursor: pointer;
+  background-color: #ba8407;
+  width: 100%;
+}
+
+.profile-container .user-info-wrapper .user-info-section .change-password-form .confirm-password-change-button:hover {
+  letter-spacing: 1px;
+  -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.219);
+          box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.219);
+}
+
+.profile-container .user-info-wrapper .user-info-section .delete-account-prompt {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 30px 0px;
+}
+
+.profile-container .user-info-wrapper .user-info-section .delete-account-prompt .confirm-delete-account {
+  padding: 10px 20px;
+  border: none;
+  color: white;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+  cursor: pointer;
+  background-color: var(--darkOrange);
+  width: 170px;
+}
+
+.profile-container .user-info-wrapper .user-info-section .delete-account-prompt .confirm-delete-account:hover {
+  letter-spacing: 1px;
+  -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.219);
+          box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.219);
+}
+
+.profile-container .user-info-wrapper .user-info-section .user-info-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.profile-container .user-info-wrapper .user-info-section .user-info-row .split-user-info {
+  width: 50%;
+  max-width: 250px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.profile-container .user-info-wrapper .user-info-section .user-info-row .split-user-info p {
+  width: 100%;
+  font-size: 16px;
+}
+
+.profile-container .user-info-wrapper .user-info-section .user-info-row .split-user-info p:nth-child(1) {
+  margin: 0;
+}
+
+.profile-container .user-info-wrapper .user-info-section .user-info-row .split-user-info p:nth-child(2) {
+  margin-left: 15px;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.profile-container .user-info-wrapper .user-info-actions {
+  padding: 30px 0px 0px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 20px;
+          column-gap: 20px;
+  border-top: 3px solid var(--analogOrange);
+}
+
+.profile-container .user-info-wrapper .user-info-actions button {
+  padding: 10px 20px;
+  border: none;
+  color: white;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+  cursor: pointer;
+  width: 170px;
+}
+
+.profile-container .user-info-wrapper .user-info-actions button:hover {
+  letter-spacing: 1px;
+  -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.219);
+          box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.219);
+}
+
+.profile-container .user-info-wrapper .user-info-actions button.delete-account-button {
+  background-color: var(--darkOrange);
+}
+
+.profile-container .user-info-wrapper .user-info-actions button.edit-profile-button {
+  background-color: #3bad1f;
+}
+
+.profile-container .user-info-wrapper .user-info-actions button.change-password-button {
+  background-color: #ba8407;
+}
+
+.food-view-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.food-view-wrapper .food-view-container {
+  border-radius: 30px;
+  margin-top: 100px;
+  max-width: 600px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: white;
+  -webkit-box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.3);
+}
+
+.food-view-wrapper .food-view-container .food-view-image {
+  border-radius: 30px 30px 0px 0px;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  max-height: 300px;
+}
+
+.food-view-wrapper .food-view-container .food-view-info {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0px 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+}
+
+.food-view-wrapper .food-view-container .food-view-info p, .food-view-wrapper .food-view-container .food-view-info h2 {
+  margin: 10px 0;
+}
+
+.food-view-wrapper .food-view-container .food-view-info h2 {
+  color: var(--accentOrange);
+  text-align: center;
+  margin-top: 20px;
+}
+
+.food-view-wrapper .food-view-container .food-view-info .food-view-info-price {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.food-view-wrapper .food-view-container .food-view-info .add-to-cart {
+  position: absolute;
+  border: none;
+  background-color: transparent;
+  font-size: 28px;
+  color: var(--accentOrange);
+  right: 20px;
+  bottom: 15px;
+  -webkit-transition: all 100ms ease-in-out;
+  transition: all 100ms ease-in-out;
+  cursor: pointer;
+}
+
+.food-view-wrapper .food-view-container .food-view-info .add-to-cart:hover {
+  -webkit-transform: scale(1.15);
+          transform: scale(1.15);
+}
+
 @-webkit-keyframes shake {
   0% {
     -webkit-transform: translateY(2px);
@@ -692,10 +1010,45 @@ label {
   }
 }
 
+@media (max-width: 1100px) {
+  .profile-container .page-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .profile-container .order-list {
+    width: 100%;
+  }
+}
+
 @media (max-width: 640px) {
   .container {
     width: 100%;
     margin: 0 auto;
+  }
+  .food-container .food-card {
+    border-radius: 0;
+  }
+  .food-container .food-card:hover {
+    -webkit-box-shadow: 0 0 55px 0 rgba(0, 0, 0, 0.55);
+            box-shadow: 0 0 55px 0 rgba(0, 0, 0, 0.55);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  .food-container .food-card .food-image img {
+    border-radius: 0;
+  }
+  .cart-container .order-button-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 100%;
+  }
+  .cart-container .order-button-container button {
+    width: 100%;
+    padding: 25px 0px;
   }
 }
 /*# sourceMappingURL=index.css.map */

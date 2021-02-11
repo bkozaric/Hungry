@@ -18,6 +18,30 @@ class User {
         }
     }
 
+    async getUserInfo(req, res) {
+        if (!req.params.uId) {
+            return res.status(403).json({ message: "Missing parameters" });
+        }
+        if (!req.session.userId) {
+            return res.status(403).json({ message: "Access denied" });
+        }
+        if (req.params.uId != req.session.userId) {
+            return res.status(401).json({ message: "Access denied" });
+        }
+        try {
+
+            let User = await userModel
+                .findById(req.params.uId)
+                .select("firstName lastName address zipcode city phone email");
+            if (User) {
+                return res.json(User);
+            }
+            return res.status(404).json({ message: "User doesn't exist" })
+        } catch (err) {
+            return res.status(500).json({ message: err });
+        }
+    }
+
 
     async logout(req, res) {
         req.session.destroy((err) => {
@@ -126,6 +150,41 @@ class User {
 
     }
 
+    async changePassword(req, res) {
+        let { uId, oldPassword, newPassword } = req.body;
+        if (!uId || !oldPassword || !newPassword) {
+            return res.status(400).json({ success: 0, message: "All filled must be required" });
+        }
+
+        if (!req.session.userId) {
+            return res.status(403).json({ success: 0, message: "Access denied" });
+        }
+        if (req.params.uId != req.session.userId) {
+            return res.status(401).json({ success: 0, message: "Access denied" });
+        }
+
+        const data = await userModel.findById(uId);
+        if (!data) {
+            return res.status(404).json({
+                success: 0, message: "User does not exist",
+            });
+        } else {
+            const oldPassCheck = await bcrypt.compare(oldPassword, data.password);
+            if (oldPassCheck) {
+                newPassword = bcrypt.hashSync(newPassword, 10);
+                let passChange = userModel.findByIdAndUpdate(uId, {
+                    password: newPassword,
+                });
+                passChange.exec((err, result) => {
+                    if (err) console.log(err);
+                    return res.status(200).json({ success: 1, message: "Password updated successfully" });
+                });
+            } else {
+                return res.status(400).json({ success: 0, message: "You have entered an incorrect old password" });
+            }
+        }
+    }
+
     async checkSession(req, res) {
         if (!req.session.userId) {
             return res.json({ "logged": 0 });
@@ -165,6 +224,27 @@ class User {
         }
         catch (err) {
             return res.status(500).json({ success: 0 });
+        }
+    }
+
+    async deleteAccount(req, res) {
+        if (!req.params.uId) {
+            return res.status(403).json({ message: "Missing parameters" });
+        }
+        if (!req.session.userId) {
+            return res.status(403).json({ message: "Access denied" });
+        }
+        if (req.params.uId != req.session.userId) {
+            return res.status(401).json({ message: "Access denied" });
+        }
+        try {
+            let User = await userModel.findByIdAndDelete(req.params.uId);
+            if (User) {
+                return res.status(200).json({ success: 1, message: "Account deleted." });
+            }
+            return res.status(404).json({ message: "User doesn't exist" })
+        } catch (err) {
+            return res.status(500).json({ message: err });
         }
     }
 }

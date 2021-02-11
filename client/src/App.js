@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 
 import Header from "./components/Header"
+import FoodView from "./components/FoodView"
 import FoodContainer from "./components/FoodContainer"
 import Login from "./components/Login"
 import Registration from "./components/Register"
@@ -39,6 +40,7 @@ function App() {
           <Router>
             <Switch>
               <Route exact path="/" component={FoodContainer}></Route>
+              <Route path="/food/:fId" component={FoodView}></Route>
               <Route path="/login" component={Login}></Route>
               <Route path="/register" component={Registration}></Route>
               <Route path="/logout" component={Logout}></Route>
