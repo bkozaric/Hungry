@@ -1,17 +1,32 @@
 const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Schema.Types;
 
 const orderSchema = new mongoose.Schema(
     {
         userId: {
-            type: String,
+            type: ObjectId,
+            ref: "users",
             required: true,
         },
-        items: {
-            type: Array,
-            required: true
-        },
+        items: [
+            {
+                id: { type: ObjectId, ref: "foods" },
+                amount: Number,
+            },
+        ],
         totalPrice: {
             type: Number,
+            required: true,
+        },
+        status: {
+            type: String,
+            default: "Processing",
+            enum: [
+                "Processing",
+                "Shipped",
+                "Delivered",
+                "Cancelled",
+            ],
             required: true,
         },
         history: {

@@ -6,6 +6,8 @@ const Cart = () => {
     const [cart, setCart] = useState([])
     const [cartFetched, setCartFetched] = useState(false)
 
+    const [cartTotal, setCartTotal] = useState(0);
+
     const [success, setSuccess] = useState(false);
     const [orderId, setOrderId] = useState(null)
 
@@ -18,7 +20,7 @@ const Cart = () => {
             await fetch("/api/order/createOrder", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(reduceBody)
+                body: JSON.stringify({ reduceBody: [...reduceBody], cartTotal: cartTotal })
             }).then(answer => answer.json())
                 .then(data => {
                     if (data.success) {
@@ -41,6 +43,7 @@ const Cart = () => {
             cartCurrent = [];
         }
         else {
+            setCartTotal(cartCurrent.reduce((cTotal, food) => { return food.price * food.amount + cTotal }, 0).toFixed(2));
             setCart(cartCurrent);
         }
         setCartFetched(true);
@@ -54,7 +57,7 @@ const Cart = () => {
         return (
             <div className="cart-container">
                 <img className="delivery-man" src="https://www.pngkey.com/png/full/428-4282931_uber-for-food-delivery-food-delivery.png"></img>
-                <p className="info-msg">Your order is on the way! Check order status <a href={"/profile/orders/" + orderId}>here</a>.</p>
+                <p className="info-msg">Your food is on the way! Check the status of your order <a href={"/profile/orders/" + orderId}>here</a>.</p>
             </div>
         )
     }
@@ -85,9 +88,9 @@ const Cart = () => {
                         </tbody>
                     </table>
                     <div className="cart-total-container">
-                        <p><b>Products:</b> $579,94</p>
-                        <p><b>+ Delivery:</b> $739,88</p>
-                        <h3>Total: $599,94</h3>
+                        <p><b>Products:</b> ${cartTotal}</p>
+                        <p><b>+ Delivery:</b> FREE</p>
+                        <h3>Total: ${cartTotal}</h3>
                     </div>
                     {sessionInfo.logged ?
                         <div className="order-button-container">

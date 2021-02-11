@@ -6,7 +6,7 @@ import Login from "./components/Login"
 import Registration from "./components/Register"
 import Logout from "./components/Logout"
 import Cart from "./components/Cart"
-import Profile from "./components/Profile"
+import Profile from "./components/Profile/Profile"
 import VerifyEmail from "./components/VerifyEmail"
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";

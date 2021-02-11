@@ -312,6 +312,8 @@ label{
     .empty-plate{
         margin: 100px 0px;
         width: 90%;
+        min-width: 300px;
+        max-width: 600px;
         filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.493));
     }
 
@@ -394,6 +396,164 @@ label{
         }
     }
 }
+
+.profile-container{
+    margin-top: 100px;
+
+    .order-info{
+        .order-details{
+            display: flex;
+            justify-content: space-between;
+
+            .order-details-right{
+                display: flex;
+                flex-direction: column;
+            }
+
+            .cancel-order{
+                background-color: rgb(228, 94, 17);
+                color: white;
+                border: none;
+                font-size: 15px;
+                padding: 10px 20px;
+                transition: all 150ms ease-in-out;
+                cursor: pointer;
+
+                &:hover{
+                    letter-spacing: 1px;
+                    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.219);
+                }
+            }
+
+            .order-total{
+                font-size: 18px;
+                font-weight: bold;
+            }
+
+            .order-status{
+                font-weight: bold;
+            }
+        }
+
+        table{
+            width: 100%;
+            border-bottom: 3px solid var(--analogOrange);
+            border-collapse: collapse;
+            table-layout: fixed;
+    
+            .amount-input{
+                width:30px;
+                padding: .5em 0 .5em .5em;
+                font-size: 1em;
+            }
+    
+            .table-small-column{
+                width:12%;
+                min-width: 72px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+    
+            .table-image-column{
+                width: 15%;
+            }
+            .table-title-column{
+                width: 20%;
+            }
+    
+            td,th{
+                padding: 15px 0px;
+                text-align: center;
+                font-size: 1.1em;
+            }
+            thead tr{
+                border-bottom: 3px solid var(--analogOrange);  
+            }
+    
+            tbody tr{
+                border-bottom: 1px solid var(--analogOrange);
+            }
+    
+            img{
+                width: 100%;
+                object-fit: contain;
+                max-height: 125px;
+            }
+        }
+    }
+
+    .page-container{
+        display: flex;
+        min-height: 250px;
+        column-gap: 25px;
+        padding: 30px 20px;
+        background-color: var(--accentOrange);
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.40);
+    }
+
+
+    .order-list{
+        width: fit-content;
+
+        .order-pick{
+            padding:15px 10px;
+            margin: 5px 0px;
+            cursor: pointer;
+            box-sizing: border-box;
+            border-left: 5px solid var(--accentOrange);
+            transition: all 200ms ease-in-out;
+
+            &:hover{
+                background-color: var(--analogOrange);
+                border-left: 5px solid var(--analogOrange);
+            }
+
+            &.highlight-order-pick{
+                
+                background-color: var(--analogOrange);
+                border-left: 5px solid var(--mainYellow);
+            }
+        }
+    }
+
+    .selected-order-preview{
+        width: 100%;
+
+
+        .pick-order-message{
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    .tab-picker{
+        margin-left: 10px;
+        display: flex;
+        width: 100%;
+        font-size: 20px;
+    
+        .tab-pick{
+            background-color: var(--analogOrange);
+            padding: 10px 20px;
+            margin-right: 10px;
+            border-radius: 15px 15px 0px 0px;
+            transition: all 200ms ease-in-out;
+
+            cursor: pointer;;
+
+            &.highlight-tab{
+                background-color: var(--accentOrange);
+                font-weight: 700;
+            }
+        }
+    
+    }
+}
+
 
 @keyframes shake{
     0%{
