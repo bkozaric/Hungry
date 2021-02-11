@@ -4,9 +4,10 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 
-const ChangePassword = () => {
+const ChangePassword = ({ sessionInfo }) => {
 
-    const [success, setSuccess] = useState(true);
+    const [success, setSuccess] = useState(null);
+    const [cpwMessage, setCpwMessage] = useState(null);
 
     const newPassowordSchema = Yup.object().shape({
         oldPassword: Yup.string()
@@ -30,8 +31,34 @@ const ChangePassword = () => {
             .oneOf([Yup.ref('newPassword'), null], "Passwords do not match"),
     });
 
-    const changePassword = async (values) => {
-        console.log(values);
+    const changePassword = async (values, resetForm) => {
+        setSuccess(null);
+        try {
+            const body = {
+                oldPassword: values.oldPassword,
+                newPassword: values.newPassword,
+                uId: sessionInfo.userId
+            };
+            await fetch("/api/user/changePassword/", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body)
+            }).then(answer => answer.json())
+                .then(data => {
+                    if (data?.success === 1) {
+                        setSuccess(true);
+                        resetForm({});
+                    }
+                    else {
+                        setSuccess(false);
+                    }
+                    setCpwMessage(data?.message)
+                });
+        }
+        catch (err) {
+            console.error(err);
+        }
+
     }
 
 
@@ -46,8 +73,8 @@ const ChangePassword = () => {
                         newPasswordAgain: ""
                     }}
                     validationSchema={newPassowordSchema}
-                    onSubmit={(values) => {
-                        changePassword(values);
+                    onSubmit={(values, { resetForm }) => {
+                        changePassword(values, resetForm);
                     }}
                 >
                     {({ values, setFieldValue, errors, touched, handleSubmit }) => (
@@ -100,9 +127,10 @@ const ChangePassword = () => {
                             </div>
                             <div className="input-row increase-bmargin">
                                 <div className="input-column">
-                                    <button className="confirm-password-change-button" type="submit">Change password</button>
+                                    <button className="confirm-password-change-button" type="submit">Change...</button>
                                 </div>
-                                {!success && <p className="error-msg">Hey</p>}
+                                {success === true ? <p className="success-msg">{cpwMessage}</p> : null}
+                                {success === false ? <p className="error-msg">{cpwMessage}</p> : null}
                             </div>
 
                         </form>

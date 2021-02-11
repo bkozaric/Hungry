@@ -5,7 +5,7 @@ class Food {
         try {
             let Foods = await foodModel
                 .find().select("name description price image")
-                .sort({ _id: -1 });
+                .sort({ _id: 1 });
             if (Foods) {
                 return res.json(Foods);
             }
@@ -19,27 +19,30 @@ class Food {
             let Food = await foodModel
                 .findById(req.params.fId).select("name description price image");
             if (Food) {
-                return res.json(Food);
+                return res.status(200).json(Food);
             }
         } catch (err) {
+            return res.status(500).json({ message: err })
             console.log(err);
         }
     }
 
     async addFood(req, res) {
-        let { name, description, price } = req.body;
+        let { name, description, price, image } = req.body;
         try {
             let newFood = new foodModel({
                 name,
                 description,
-                price
+                price,
+                image
             });
             let save = await newFood.save();
             if (save) {
-                return res.json({ success: "Food created successfully" });
+                return res.status(200).json({ success: 1, message: "Food added" });
             }
+            return status(400).json({ success: 0, message: "Unknown error occured" })
         } catch (err) {
-            return res.json({ error: err });
+            return res.status(500).json({ message: err });
         }
     }
 }

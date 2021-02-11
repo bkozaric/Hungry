@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { SessionContext } from '../SessionContext';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMinus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+
 const Cart = () => {
 
     const [cart, setCart] = useState([])
@@ -36,11 +40,14 @@ const Cart = () => {
         }
     }
 
+    const calculateTotal = () => {
+        setCartTotal(cart.reduce((cTotal, food) => { return food.price * food.amount + cTotal }, 0).toFixed(2));
+    }
+
     const clearCart = () => {
         localStorage.removeItem("cart");
         setCart([]);
     }
-
 
     const getCart = () => {
         let cartCurrent = JSON.parse(localStorage.getItem("cart"));
@@ -48,15 +55,42 @@ const Cart = () => {
             cartCurrent = [];
         }
         else {
-            setCartTotal(cartCurrent.reduce((cTotal, food) => { return food.price * food.amount + cTotal }, 0).toFixed(2));
+            calculateTotal();
             setCart(cartCurrent);
         }
         setCartFetched(true);
     }
 
+    const changeItemAmount = (fId, changeBy) => {
+        //console.log("Change ", fId, " by ", changeBy);
+        if (cart.find(food => { return food._id === fId }).amount + changeBy > 0) {
+            setCart(prevCart => {
+                return prevCart.map((food) => {
+                    if (food._id === fId) {
+                        return { ...food, amount: food.amount + changeBy };
+                    }
+                    return food;
+                })
+            })
+        }
+        else {
+            setCart(prevCart => {
+                return prevCart.filter((food) => { return food._id !== fId })
+            })
+        }
+
+    }
+
     useEffect(() => {
         getCart();
     }, [])
+
+    useEffect(() => {
+        if (cart.length > 0) {
+            calculateTotal();
+        }
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }, [cart])
 
     if (success) {
         return (
@@ -85,9 +119,13 @@ const Cart = () => {
                                 <tr key={food._id}>
                                     <td><img src={food.image} /></td>
                                     <td>{food.name}</td>
-                                    <td>{food.amount}</td>
+                                    <td>
+                                        <FontAwesomeIcon onClick={() => changeItemAmount(food._id, -1)} className="change-cart-amount" icon={faMinus} />
+                                        <span className="cart-item-amount">{food.amount}</span>
+                                        <FontAwesomeIcon onClick={() => changeItemAmount(food._id, 1)} className="change-cart-amount" icon={faPlus} />
+                                    </td>
                                     <td>{food.price}</td>
-                                    <td>{food.amount * food.price}</td>
+                                    <td>{parseFloat(food.amount * food.price).toFixed(2)}</td>
                                 </tr>
                             )}
                         </tbody>

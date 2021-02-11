@@ -1,17 +1,21 @@
 body {
     --headerHeight: 120px;
-    --accentOrange: #e2c60e;
-    --analogOrange: #ebd723;
-    --mainYellow: #f5eb39;
-    --darkOrange: rgb(228, 94, 17);
+    --accentOrange: #f6ec2d;
+    --analogOrange: #F9F269;
+    --mainYellow: #FAF486;
+    --darkOrange: #FFA914;
     --gridItemSize: 350px;
     margin: 0 auto;
+    height: 100%;
     background-color: var(--mainYellow);
     font-family: 'Roboto';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
     overflow-x: hidden;
+}
+
+html{
+    height: 100%;
 }
 
 *:focus{
@@ -20,7 +24,7 @@ body {
 
 #root{
     position: relative;
-
+    height: 100%;
     &::before{
         content: "";
         display:block;
@@ -35,8 +39,29 @@ body {
 
 .container{
     width:60%;
+    min-height: 100%;
     margin: 0 auto;
+    
+}
 
+.footer{
+    width: 100vw;
+    background-color: #edce11;
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.35);
+    height: 100px;
+    margin-top: -100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 10px;
+    p{
+        margin: 0;
+
+        &:nth-child(2){
+            font-weight: bold;
+        }
+    }
 }
 
 .header-container{
@@ -59,6 +84,10 @@ body {
             margin-left: 140px;
             font-size: 32px;
             color: black;
+
+            &:hover{
+                animation: spread 1250ms ease-in-out 0ms infinite both;
+            }
         }
     }
 }
@@ -94,7 +123,9 @@ body {
 }
 
 .auth-container{
-    margin-top: 150px;
+    padding-bottom: 200px;
+    margin-top: 100px;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -104,7 +135,7 @@ body {
     width: 100%;
     color:white;
     border: none;
-    background-color: var(--accentOrange);
+    background-color: var(--darkOrange);
     padding: 10px;
     font-size: 14px;
     font-weight: 600;
@@ -156,7 +187,7 @@ body {
         font-size: 14px;
         padding: 10px;
         box-sizing: border-box;
-        border-left: 5px solid var(--accentOrange);
+        border-left: 5px solid var(--darkOrange);
         border-bottom: none;
         border-top: none;
         border-right: none;
@@ -242,6 +273,7 @@ label{
     column-gap: 30px;
     row-gap: 30px;
     margin-top: 100px;
+    padding-bottom: 200px;
 
     
 
@@ -309,13 +341,27 @@ label{
 }
 
 .cart-container{
-    margin: 0 auto;
+    margin: 50px auto;
     display: flex;
     width: 100%;
     justify-content: center;
     align-items: center;
     padding: 2em 0;
     flex-direction: column;
+    padding-bottom: 200px;
+
+    .change-cart-amount{
+        font-size: 20px;
+        &:hover{
+            background-color: var(--analogOrange);
+        }
+    }
+
+    .cart-item-amount{
+        width: 20px;
+        display: inline-block;
+        height: 100%;
+    }
 
     .empty-plate{
         margin: 100px 0px;
@@ -338,9 +384,11 @@ label{
         margin-top: 25px;
         display: flex;
         min-width: 400px;
-        width: 40%;
-        max-width: 600px;
-        column-gap: 20px;
+        width: 100%;
+        row-gap: 10px;
+        flex-direction: column;
+        
+        align-items: flex-end;
 
         button{
             transition: all 150ms ease-in-out;
@@ -379,13 +427,13 @@ label{
 
         h3{
             padding-top: .3em;
-            border-top: 2px solid var(--accentOrange);
+            border-top: 2px solid var(--darkOrange);
         }
     }
 
     table{
         width: 100%;
-        border-bottom: 3px solid var(--accentOrange);
+        border-bottom: 3px solid var(--darkOrange);
         border-collapse: collapse;
         table-layout: fixed;
 
@@ -416,11 +464,11 @@ label{
             font-size: 1.1em;
         }
         thead tr{
-            border-bottom: 3px solid var(--accentOrange);  
+            border-bottom: 3px solid var(--darkOrange);  
         }
 
         tbody tr{
-            border-bottom: 1px solid var(--accentOrange);
+            border-bottom: 1px solid var(--darkOrange);
         }
 
         img{
@@ -433,6 +481,7 @@ label{
 
 .profile-container{
     margin-top: 100px;
+    padding-bottom: 200px;
 
     .order-info{
         .order-details{
@@ -471,7 +520,7 @@ label{
 
         table{
             width: 100%;
-            border-bottom: 3px solid var(--analogOrange);
+            border-bottom: 3px solid var(--darkOrange);
             border-collapse: collapse;
             table-layout: fixed;
     
@@ -502,11 +551,11 @@ label{
                 font-size: 1.1em;
             }
             thead tr{
-                border-bottom: 3px solid var(--analogOrange);  
+                border-bottom: 3px solid var(--darkOrange);  
             }
     
             tbody tr{
-                border-bottom: 1px solid var(--analogOrange);
+                border-bottom: 1px solid var(--darkOrange);
             }
     
             img{
@@ -546,7 +595,7 @@ label{
             &.highlight-order-pick{
                 
                 background-color: var(--analogOrange);
-                border-left: 5px solid var(--mainYellow);
+                border-left: 5px solid var(--darkOrange);
             }
         }
     }
@@ -596,6 +645,12 @@ label{
 
         .user-info-section{
 
+            .change-user-info-form{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
             .change-password-form{
                 display: flex;
                 justify-content: center;
@@ -610,7 +665,7 @@ label{
                 }
 
                 input{
-                    border-left: 5px solid var(--mainYellow);
+                    border-left: 5px solid var(--darkOrange);
                 }
 
                 .confirm-password-change-button{
@@ -621,6 +676,9 @@ label{
                     cursor: pointer;
                     background-color: #ba8407;
                     width: 100%;
+                    font-size: 15px;
+                    text-transform: uppercase;
+                    font-weight: 600;
 
                     &:hover{
                         letter-spacing: 1px;
@@ -643,7 +701,10 @@ label{
                     transition: all 150ms ease-in-out;
                     cursor: pointer;
                     background-color: var(--darkOrange);
+                    text-transform: uppercase;
+                    font-weight: 600;
                     width: 170px;
+                    font-size: 15px;
 
                     &:hover{
                         letter-spacing: 1px;
@@ -692,7 +753,7 @@ label{
             justify-content: center;
             align-items: center;
             column-gap: 20px;
-            border-top: 3px solid var(--analogOrange);
+            border-top: 3px solid var(--darkOrange);
 
             button{
                 padding: 10px 20px;
@@ -700,7 +761,10 @@ label{
                 color: white;
                 transition: all 150ms ease-in-out;
                 cursor: pointer;
-                width: 170px;
+                width: 225px;
+                font-weight: 600;
+                font-size: 15px;
+                text-transform: uppercase;
 
                 &:hover{
                     letter-spacing: 1px;
@@ -766,7 +830,7 @@ label{
             }
 
             h2{
-                color: var(--accentOrange);
+                color: var(--darkOrange);
                 text-align: center;
                 margin-top: 20px;
             }
@@ -797,7 +861,17 @@ label{
     }
 }
 
-
+@keyframes spread{
+    0%{
+        letter-spacing: 0px;
+    }
+    50%{
+        letter-spacing: 2px;
+    }
+    100%{
+        letter-spacing: 0px;
+    }
+}
 
 
 @keyframes shake{
@@ -853,7 +927,7 @@ label{
 
             button{
                 width: 100%;
-                padding: 25px 0px;
+                padding: 15px 0px;
             }
         }
     }

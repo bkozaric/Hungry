@@ -159,7 +159,7 @@ class User {
         if (!req.session.userId) {
             return res.status(403).json({ success: 0, message: "Access denied" });
         }
-        if (req.params.uId != req.session.userId) {
+        if (uId != req.session.userId) {
             return res.status(401).json({ success: 0, message: "Access denied" });
         }
 
@@ -174,15 +174,19 @@ class User {
                 newPassword = bcrypt.hashSync(newPassword, 10);
                 let passChange = userModel.findByIdAndUpdate(uId, {
                     password: newPassword,
-                });
+                }, { useFindAndModify: false });
                 passChange.exec((err, result) => {
                     if (err) console.log(err);
-                    return res.status(200).json({ success: 1, message: "Password updated successfully" });
+                    return res.status(200).json({ success: 1, message: "Password updated successfully!" });
                 });
             } else {
-                return res.status(400).json({ success: 0, message: "You have entered an incorrect old password" });
+                return res.status(400).json({ success: 0, message: "Invalid old password" });
             }
         }
+    }
+
+    async changeUserInfo(req, res) {
+
     }
 
     async checkSession(req, res) {

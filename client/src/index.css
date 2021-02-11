@@ -1,16 +1,21 @@
 body {
   --headerHeight: 120px;
-  --accentOrange: #e2c60e;
-  --analogOrange: #ebd723;
-  --mainYellow: #f5eb39;
-  --darkOrange: rgb(228, 94, 17);
+  --accentOrange: #f6ec2d;
+  --analogOrange: #F9F269;
+  --mainYellow: #FAF486;
+  --darkOrange: #FFA914;
   --gridItemSize: 350px;
   margin: 0 auto;
+  height: 100%;
   background-color: var(--mainYellow);
   font-family: 'Roboto';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+}
+
+html {
+  height: 100%;
 }
 
 *:focus {
@@ -19,6 +24,7 @@ body {
 
 #root {
   position: relative;
+  height: 100%;
 }
 
 #root::before {
@@ -35,7 +41,39 @@ body {
 
 .container {
   width: 60%;
+  min-height: 100%;
   margin: 0 auto;
+}
+
+.footer {
+  width: 100vw;
+  background-color: #edce11;
+  -webkit-box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.35);
+          box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.35);
+  height: 100px;
+  margin-top: -100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  row-gap: 10px;
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer p:nth-child(2) {
+  font-weight: bold;
 }
 
 .header-container {
@@ -74,6 +112,11 @@ body {
   margin-left: 140px;
   font-size: 32px;
   color: black;
+}
+
+.header-container .show-food-container a:hover {
+  -webkit-animation: spread 1250ms ease-in-out 0ms infinite both;
+          animation: spread 1250ms ease-in-out 0ms infinite both;
 }
 
 .navigation {
@@ -115,7 +158,9 @@ body {
 }
 
 .auth-container {
-  margin-top: 150px;
+  padding-bottom: 200px;
+  margin-top: 100px;
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -131,7 +176,7 @@ body {
   width: 100%;
   color: white;
   border: none;
-  background-color: var(--accentOrange);
+  background-color: var(--darkOrange);
   padding: 10px;
   font-size: 14px;
   font-weight: 600;
@@ -206,7 +251,7 @@ body {
   padding: 10px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  border-left: 5px solid var(--accentOrange);
+  border-left: 5px solid var(--darkOrange);
   border-bottom: none;
   border-top: none;
   border-right: none;
@@ -298,6 +343,7 @@ label {
           column-gap: 30px;
   row-gap: 30px;
   margin-top: 100px;
+  padding-bottom: 200px;
 }
 
 .food-container .food-card {
@@ -369,7 +415,7 @@ label {
 }
 
 .cart-container {
-  margin: 0 auto;
+  margin: 50px auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -385,6 +431,21 @@ label {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  padding-bottom: 200px;
+}
+
+.cart-container .change-cart-amount {
+  font-size: 20px;
+}
+
+.cart-container .change-cart-amount:hover {
+  background-color: var(--analogOrange);
+}
+
+.cart-container .cart-item-amount {
+  width: 20px;
+  display: inline-block;
+  height: 100%;
 }
 
 .cart-container .empty-plate {
@@ -413,10 +474,15 @@ label {
   display: -ms-flexbox;
   display: flex;
   min-width: 400px;
-  width: 40%;
-  max-width: 600px;
-  -webkit-column-gap: 20px;
-          column-gap: 20px;
+  width: 100%;
+  row-gap: 10px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
 }
 
 .cart-container .order-button-container button {
@@ -466,12 +532,12 @@ label {
 
 .cart-container .cart-total-container h3 {
   padding-top: .3em;
-  border-top: 2px solid var(--accentOrange);
+  border-top: 2px solid var(--darkOrange);
 }
 
 .cart-container table {
   width: 100%;
-  border-bottom: 3px solid var(--accentOrange);
+  border-bottom: 3px solid var(--darkOrange);
   border-collapse: collapse;
   table-layout: fixed;
 }
@@ -505,11 +571,11 @@ label {
 }
 
 .cart-container table thead tr {
-  border-bottom: 3px solid var(--accentOrange);
+  border-bottom: 3px solid var(--darkOrange);
 }
 
 .cart-container table tbody tr {
-  border-bottom: 1px solid var(--accentOrange);
+  border-bottom: 1px solid var(--darkOrange);
 }
 
 .cart-container table img {
@@ -521,6 +587,7 @@ label {
 
 .profile-container {
   margin-top: 100px;
+  padding-bottom: 200px;
 }
 
 .profile-container .order-info .order-details {
@@ -570,7 +637,7 @@ label {
 
 .profile-container .order-info table {
   width: 100%;
-  border-bottom: 3px solid var(--analogOrange);
+  border-bottom: 3px solid var(--darkOrange);
   border-collapse: collapse;
   table-layout: fixed;
 }
@@ -604,11 +671,11 @@ label {
 }
 
 .profile-container .order-info table thead tr {
-  border-bottom: 3px solid var(--analogOrange);
+  border-bottom: 3px solid var(--darkOrange);
 }
 
 .profile-container .order-info table tbody tr {
-  border-bottom: 1px solid var(--analogOrange);
+  border-bottom: 1px solid var(--darkOrange);
 }
 
 .profile-container .order-info table img {
@@ -655,7 +722,7 @@ label {
 
 .profile-container .order-list .order-pick.highlight-order-pick {
   background-color: var(--analogOrange);
-  border-left: 5px solid var(--mainYellow);
+  border-left: 5px solid var(--darkOrange);
 }
 
 .profile-container .selected-order-preview {
@@ -724,6 +791,18 @@ label {
           flex-direction: column;
 }
 
+.profile-container .user-info-wrapper .user-info-section .change-user-info-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .profile-container .user-info-wrapper .user-info-section .change-password-form {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -745,7 +824,7 @@ label {
 }
 
 .profile-container .user-info-wrapper .user-info-section .change-password-form input {
-  border-left: 5px solid var(--mainYellow);
+  border-left: 5px solid var(--darkOrange);
 }
 
 .profile-container .user-info-wrapper .user-info-section .change-password-form .confirm-password-change-button {
@@ -757,6 +836,9 @@ label {
   cursor: pointer;
   background-color: #ba8407;
   width: 100%;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .profile-container .user-info-wrapper .user-info-section .change-password-form .confirm-password-change-button:hover {
@@ -790,7 +872,10 @@ label {
   transition: all 150ms ease-in-out;
   cursor: pointer;
   background-color: var(--darkOrange);
+  text-transform: uppercase;
+  font-weight: 600;
   width: 170px;
+  font-size: 15px;
 }
 
 .profile-container .user-info-wrapper .user-info-section .delete-account-prompt .confirm-delete-account:hover {
@@ -857,7 +942,7 @@ label {
           align-items: center;
   -webkit-column-gap: 20px;
           column-gap: 20px;
-  border-top: 3px solid var(--analogOrange);
+  border-top: 3px solid var(--darkOrange);
 }
 
 .profile-container .user-info-wrapper .user-info-actions button {
@@ -867,7 +952,10 @@ label {
   -webkit-transition: all 150ms ease-in-out;
   transition: all 150ms ease-in-out;
   cursor: pointer;
-  width: 170px;
+  width: 225px;
+  font-weight: 600;
+  font-size: 15px;
+  text-transform: uppercase;
 }
 
 .profile-container .user-info-wrapper .user-info-actions button:hover {
@@ -951,7 +1039,7 @@ label {
 }
 
 .food-view-wrapper .food-view-container .food-view-info h2 {
-  color: var(--accentOrange);
+  color: var(--darkOrange);
   text-align: center;
   margin-top: 20px;
 }
@@ -978,6 +1066,30 @@ label {
 .food-view-wrapper .food-view-container .food-view-info .add-to-cart:hover {
   -webkit-transform: scale(1.15);
           transform: scale(1.15);
+}
+
+@-webkit-keyframes spread {
+  0% {
+    letter-spacing: 0px;
+  }
+  50% {
+    letter-spacing: 2px;
+  }
+  100% {
+    letter-spacing: 0px;
+  }
+}
+
+@keyframes spread {
+  0% {
+    letter-spacing: 0px;
+  }
+  50% {
+    letter-spacing: 2px;
+  }
+  100% {
+    letter-spacing: 0px;
+  }
 }
 
 @-webkit-keyframes shake {
@@ -1048,7 +1160,7 @@ label {
   }
   .cart-container .order-button-container button {
     width: 100%;
-    padding: 25px 0px;
+    padding: 15px 0px;
   }
 }
 /*# sourceMappingURL=index.css.map */

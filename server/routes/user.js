@@ -11,7 +11,8 @@ router
     .get("/userInfo/:uId", usersController.getUserInfo)
     .post("/register", usersController.register)
     .post("/login", usersController.login)
-    .patch("/changePassword", usersController.changePassword)
+    .put("/changePassword", usersController.changePassword)
+    .put("/changeUserInfo", usersController.changeUserInfo)
     .delete("/deleteAccount/:uId", usersController.deleteAccount)
 
 module.exports = router;

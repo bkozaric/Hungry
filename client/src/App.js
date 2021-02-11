@@ -8,6 +8,7 @@ import Registration from "./components/Register"
 import Logout from "./components/Logout"
 import Cart from "./components/Cart"
 import Profile from "./components/Profile/Profile"
+import Footer from "./components/Footer"
 import VerifyEmail from "./components/VerifyEmail"
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -35,7 +36,6 @@ function App() {
   return (
     <SessionContext.Provider value={sessionInfo}>
     <div className="container">
-     
           <Header/>
           <Router>
             <Switch>
@@ -59,6 +59,7 @@ function App() {
             </Switch>
           </Router>
     </div>
+    <Footer/>
     </SessionContext.Provider>  
   );
 }

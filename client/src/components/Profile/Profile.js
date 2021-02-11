@@ -6,6 +6,7 @@ import UserActions from "./UserActions";
 import UserInfo from "./UserInfo";
 import DeleteAccount from "./DeleteAccount";
 import ChangePassword from "./ChangePassword";
+import ChangeUserInfo from "./ChangeUserInfo";
 
 const Profile = (props) => {
 
@@ -184,7 +185,7 @@ const Profile = (props) => {
                             <TabPicker changeTab={changeTab} currentTab={1} />
                             <div className="page-container">
                                 <div className="user-info-wrapper">
-                                    <p>EDIT INFOOOO</p>
+                                    <ChangeUserInfo sessionInfo={sessionInfo} />
                                     <UserActions setProfileAction={setProfileAction} PROFILE_ACTIONS={PROFILE_ACTIONS} />
                                 </div>
                             </div>
@@ -196,7 +197,7 @@ const Profile = (props) => {
                             <TabPicker changeTab={changeTab} currentTab={1} />
                             <div className="page-container">
                                 <div className="user-info-wrapper">
-                                    <ChangePassword />
+                                    <ChangePassword sessionInfo={sessionInfo} />
                                     <UserActions setProfileAction={setProfileAction} PROFILE_ACTIONS={PROFILE_ACTIONS} />
                                 </div>
                             </div>
