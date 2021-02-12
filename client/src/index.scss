@@ -243,6 +243,7 @@ label{
     p{
         margin: 0;
         padding: 0;
+        text-align: center;
     }
 }
 
@@ -253,6 +254,7 @@ label{
     p{
         margin: 0;
         padding: 0;
+        text-align: center;
     }
 }
 
@@ -264,7 +266,12 @@ label{
     p{
         margin: 0;
         padding: 0;
+        text-align: center;
     }
+}
+
+p.success-msg{
+    text-align: center;
 }
 
 .food-container{
@@ -649,6 +656,10 @@ label{
                 display: flex;
                 justify-content: center;
                 align-items: center;
+
+                .increase-bmargin{
+                    margin-bottom: 35px;
+                }
             }
 
             .change-password-form{

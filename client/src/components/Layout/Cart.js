@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { SessionContext } from '../SessionContext';
+import { SessionContext } from '../../SessionContext';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMinus } from '@fortawesome/free-solid-svg-icons'

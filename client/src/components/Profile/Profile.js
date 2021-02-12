@@ -61,6 +61,7 @@ const Profile = (props) => {
         try {
             const results = await fetch(`/api/order/${oId}&${sessionInfo.userId}`, { method: "DELETE" });
             getUserOrders();
+            setCurrentPreviewOrder(null)
         }
         catch (err) {
             console.log(err);
@@ -185,7 +186,7 @@ const Profile = (props) => {
                             <TabPicker changeTab={changeTab} currentTab={1} />
                             <div className="page-container">
                                 <div className="user-info-wrapper">
-                                    <ChangeUserInfo sessionInfo={sessionInfo} />
+                                    <ChangeUserInfo sessionInfo={sessionInfo} userInfo={userInfo} updateParent={getUserInfo} />
                                     <UserActions setProfileAction={setProfileAction} PROFILE_ACTIONS={PROFILE_ACTIONS} />
                                 </div>
                             </div>

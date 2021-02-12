@@ -135,6 +135,7 @@ class User {
                     if (User.verified === 'true') {
                         req.session.email = email;
                         req.session.userId = User.id;
+                        req.session.isAdmin = User.userRole === 1 ? true : false;
                         req.session.save();
                         return res.status(200).json({ login: 1, message: "Login successful!" });
                     }
@@ -153,7 +154,7 @@ class User {
     async changePassword(req, res) {
         let { uId, oldPassword, newPassword } = req.body;
         if (!uId || !oldPassword || !newPassword) {
-            return res.status(400).json({ success: 0, message: "All filled must be required" });
+            return res.status(400).json({ success: 0, message: "All fields are required" });
         }
 
         if (!req.session.userId) {
@@ -186,14 +187,43 @@ class User {
     }
 
     async changeUserInfo(req, res) {
-
+        //return res.status(200).json({ success: 1, message: "req received" })
+        let { uId, firstName, lastName, zipcode, city, address, phone } = req.body;
+        if (!uId || !firstName || !lastName || !zipcode || !address || !city || !phone) {
+            return res.status(400).json({ success: 0, message: "All fields are required" });
+        }
+        if (!req.session.userId) {
+            return res.status(403).json({ success: 0, message: "Access denied" });
+        }
+        if (uId != req.session.userId) {
+            return res.status(401).json({ success: 0, message: "Access denied" });
+        }
+        const data = await userModel.findById(uId);
+        if (!data) {
+            return res.status(404).json({
+                success: 0, message: "User does not exist",
+            });
+        } else {
+            let userChange = userModel.findByIdAndUpdate(uId, {
+                firstName,
+                lastName,
+                zipcode,
+                city,
+                address,
+                phone
+            }, { useFindAndModify: false });
+            userChange.exec((err, result) => {
+                if (err) console.log(err);
+                return res.status(200).json({ success: 1, message: "User info updated successfully!" });
+            });
+        }
     }
 
     async checkSession(req, res) {
         if (!req.session.userId) {
             return res.json({ "logged": 0 });
         }
-        return res.json({ "logged": 1, "email": req.session.email, "userId": req.session.userId });
+        return res.json({ "logged": 1, "email": req.session.email, "userId": req.session.userId, "isAdmin": req.session.isAdmin });
     }
 
 

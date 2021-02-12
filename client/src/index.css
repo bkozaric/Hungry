@@ -311,6 +311,7 @@ label {
 .error-msg p {
   margin: 0;
   padding: 0;
+  text-align: center;
 }
 
 .info-msg {
@@ -321,6 +322,7 @@ label {
 .info-msg p {
   margin: 0;
   padding: 0;
+  text-align: center;
 }
 
 .success-msg {
@@ -332,6 +334,11 @@ label {
 .success-msg p {
   margin: 0;
   padding: 0;
+  text-align: center;
+}
+
+p.success-msg {
+  text-align: center;
 }
 
 .food-container {
@@ -801,6 +808,10 @@ label {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.profile-container .user-info-wrapper .user-info-section .change-user-info-form .increase-bmargin {
+  margin-bottom: 35px;
 }
 
 .profile-container .user-info-wrapper .user-info-section .change-password-form {

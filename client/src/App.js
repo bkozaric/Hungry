@@ -1,15 +1,15 @@
 import React, { Fragment, useEffect, useState } from 'react';
 
-import Header from "./components/Header"
-import FoodView from "./components/FoodView"
-import FoodContainer from "./components/FoodContainer"
-import Login from "./components/Login"
-import Registration from "./components/Register"
-import Logout from "./components/Logout"
-import Cart from "./components/Cart"
+import Header from "./components/Layout/Header"
+import FoodView from "./components/Layout/FoodView"
+import FoodContainer from "./components/Layout/FoodContainer"
+import Login from "./components/Auth/Login"
+import Registration from "./components/Auth/Register"
+import Logout from "./components/Auth/Logout"
+import Cart from "./components/Layout/Cart"
 import Profile from "./components/Profile/Profile"
-import Footer from "./components/Footer"
-import VerifyEmail from "./components/VerifyEmail"
+import Footer from "./components/Layout/Footer"
+import VerifyEmail from "./components/Auth/VerifyEmail"
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import {SessionContext} from "./SessionContext";

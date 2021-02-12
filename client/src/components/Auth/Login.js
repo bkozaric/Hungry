@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useContext } from 'react';
-import { SessionContext } from '../SessionContext';
+import { SessionContext } from '../../SessionContext';
 import Logout from "./Logout"
 
 import { Formik } from 'formik';

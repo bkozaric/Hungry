@@ -3,7 +3,7 @@ import React, { useState, Fragment } from 'react'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-const ChangeUserInfo = ({ sessionInfo }) => {
+const ChangeUserInfo = ({ sessionInfo, userInfo, updateParent }) => {
 
     const [success, setSuccess] = useState(null)
     const [cuiMessage, setCuiMessage] = useState(null)
@@ -29,6 +29,35 @@ const ChangeUserInfo = ({ sessionInfo }) => {
 
     const changeUserInfo = async (values) => {
         setSuccess(null);
+        try {
+            const body = {
+                firstName: values.firstName,
+                lastName: values.lastName,
+                phone: values.phone,
+                zipcode: values.zipcode,
+                city: values.city,
+                address: values.address,
+                uId: sessionInfo.userId
+            };
+            await fetch("/api/user/changeUserInfo/", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body)
+            }).then(answer => answer.json())
+                .then(data => {
+                    if (data?.success === 1) {
+                        setSuccess(true);
+                        updateParent();
+                    }
+                    else {
+                        setSuccess(false);
+                    }
+                    setCuiMessage(data?.message)
+                });
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
 
     return (
@@ -36,12 +65,12 @@ const ChangeUserInfo = ({ sessionInfo }) => {
             <div className="change-user-info-form">
                 <Formik
                     initialValues={{
-                        firstName: "",
-                        lastName: "",
-                        city: "",
-                        zipcode: "",
-                        address: "",
-                        phone: ""
+                        firstName: userInfo.firstName,
+                        lastName: userInfo.lastName,
+                        city: userInfo.city,
+                        zipcode: userInfo.zipcode,
+                        address: userInfo.address,
+                        phone: userInfo.phone
                     }}
                     validationSchema={SignupSchema}
                     onSubmit={(values) => {
@@ -120,7 +149,7 @@ const ChangeUserInfo = ({ sessionInfo }) => {
                                 {errors.phone && touched.phone ? (
                                     <Fragment><span>{errors.phone}</span></Fragment>
                                 ) : null}
-                                <div className="input-column">
+                                <div className="input-column increase-bmargin">
                                     <button className="submit-button" type="submit">Save changes</button>
                                     {success === true ? <p className="success-msg">{cuiMessage}</p> : null}
                                     {success === false ? <p className="error-msg">{cuiMessage}</p> : null}
