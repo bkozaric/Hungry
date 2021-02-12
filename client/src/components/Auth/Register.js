@@ -9,7 +9,7 @@ import * as Yup from 'yup';
 const Register = () => {
     const sessionInfo = useContext(SessionContext);
 
-    const [success, setSuccess] = useState(true);
+    const [success, setSuccess] = useState(null);
     const [registrationMessage, setRegistrationMessage] = useState(null)
 
     const SignupSchema = Yup.object().shape({
@@ -47,7 +47,7 @@ const Register = () => {
     });
 
     const register = async (values) => {
-        setSuccess(true);
+        setSuccess(null);
         try {
             const body = { ...values };
             await fetch("/api/user/register", {
@@ -57,7 +57,11 @@ const Register = () => {
             }).then(answer => answer.json())
                 .then(data => {
                     if (data.success === 1) {
-                        window.location = "/";
+                        setSuccess(true);
+                        setRegistrationMessage("Registration successful! A link has been sent to  your email. Please verify your account before loging in.");
+                        setTimeout(() => {
+                            window.location = "/";
+                        }, 5000);
                     }
                     else {
                         setSuccess(false);
@@ -215,7 +219,8 @@ const Register = () => {
                                     <p className="auth-note">Already have an account? Login <a href="/login">here</a></p>
                                 </div>
                             </div>
-                            {!success && <p className="error-msg">{registrationMessage}</p>}
+                            {success === false ? <p className="error-msg">{registrationMessage}</p> : null}
+                            {success === true ? <p className="success-msg">{registrationMessage}</p> : null}
                         </form>
                     )}
                 </Formik>

@@ -1,6 +1,7 @@
 const userModel = require("../models/users");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer")
 const JWT_SECRET = process.env.jwt_secret;
 
 class User {
@@ -55,13 +56,13 @@ class User {
     async register(req, res) {
         try {
 
-            /*let transporter = nodemailer.createTransport({
-                host: "smtp.gmail.com",
+            let transporter = nodemailer.createTransport({
+                service: "Gmail",
                 auth: {
-                    user: process.env.email_user, // generated ethereal user
+                    user: process.env.email_user,
                     pass: process.env.email_password
                 },
-            });*/
+            });
 
             const { firstName, lastName, email, password, address, phone, city, zipcode } = req.body;
 
@@ -98,24 +99,21 @@ class User {
                 });
                 let save = await newUser.save();
                 if (save) {
+                    await transporter.sendMail({
+                        from: '"Hungry" <hungryuser2021@gmail.com>', // sender address
+                        to: email, // list of receivers
+                        subject: "Please verify your account", // Subject line
+                        html: `<h2>Hello ${firstName}</h2><p>To finish the registration process please verify your account by click on <a href="http://localhost:3000/verify/${token}">this</a> link.</p><p>- Hungry Ltd.</p>`, // html body
+                    });
                     return res.status(200).json({ success: 1, message: "User created successfully" });
                 }
             } catch (err) {
                 return res.json({ error: err });
             }
 
-            /*const results = await db.insertUser(username, hashedPass, email, firstName, lastName, contact, address, city, zipcode, token);
-    
-            const { affectedRows: success } = results;*/
-
             /*
             if (success) {
-                await transporter.sendMail({
-                    from: '"eSell" <bymplayer213@gmail.com>', // sender address
-                    to: email, // list of receivers
-                    subject: "Please confirm your account", // Subject line
-                    html: `<h2>Hello ${username}</h2><p>To finish the registration process please verify your account by click on <a href="http://localhost:3000/confirm/${token}">this</a> link.</p><p>- eSell</p>`, // html body
-                });
+                
             }*/
 
         }

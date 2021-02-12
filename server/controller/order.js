@@ -1,6 +1,30 @@
 const orderModel = require("../models/orders");
 
 class Order {
+
+    async getAllOrders(req, res) {
+
+        /*if (!req.session.userId)
+            return res.status(401).json({ message: "Access denied. You are not logged in." });*/
+
+        /*if (!req.session.isAdmin)
+            return res.status(403).json({ message: "Access denied. You are not an admin" })*/
+
+        try {
+            let Orders = await orderModel
+                .find()
+                .populate("items.id", "name description image price")
+                .populate("userId", "firstName lastName email address city zipcode phone")
+                .sort({ _id: 1 });
+            if (Orders) {
+                return res.status(200).json(Orders);
+            }
+        } catch (err) {
+            return res.status(500).json({ message: err });
+        }
+
+    }
+
     async getUserOrders(req, res) {
         try {
             let Orders = await orderModel

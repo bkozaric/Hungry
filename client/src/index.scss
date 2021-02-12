@@ -239,6 +239,7 @@ label{
     padding: 15px 30px;
     color: red;
     background-color: var(--analogOrange);
+    text-align: center;
 
     p{
         margin: 0;
@@ -250,6 +251,7 @@ label{
 .info-msg{
     padding: 15px 30px;
     background-color: var(--analogOrange);
+    text-align: center;
 
     p{
         margin: 0;
@@ -262,16 +264,13 @@ label{
     padding: 15px 30px;
     color: green;
     background-color: var(--analogOrange);
+    text-align: center;
 
     p{
         margin: 0;
         padding: 0;
         text-align: center;
     }
-}
-
-p.success-msg{
-    text-align: center;
 }
 
 .admin-button{
@@ -363,6 +362,7 @@ p.success-msg{
 
     .change-cart-amount{
         font-size: 20px;
+        cursor: pointer;
         &:hover{
             background-color: var(--analogOrange);
         }
@@ -372,6 +372,7 @@ p.success-msg{
         width: 20px;
         display: inline-block;
         height: 100%;
+        user-select: none;
     }
 
     .empty-plate{
@@ -876,6 +877,133 @@ p.success-msg{
     }
 }
 
+.admin-wrapper{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+    background-color: var(--accentOrange);
+    min-height: 600px;
+    margin-top: 100px;
+
+    .admin-tab-picker{
+        box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+
+        .admin-tab-option{
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            font-size: 64px;
+            cursor: pointer;
+            transition: all 300ms ease-in-out;
+
+            &.highlight-tab{
+                background-color: var(--darkOrange);
+                color: rgb(71, 68, 62);
+            }
+
+            &:hover{
+                background-color: var(--mainYellow);
+            }
+        }
+    }
+
+    .admin-dashboard{
+        width: 100%;
+        display: flex;
+        padding: 20px;
+        height: 100%;
+        row-gap: 5px;
+        flex-direction: column;
+
+        .order-card{
+            width: 100%;
+            height: 35px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+            
+            grid-template-rows: 35px 0px;
+            overflow-y: hidden;
+            justify-content: space-around;
+            cursor: pointer;
+
+            transition: all 200ms ease-in-out;
+
+            &.show-details{
+                grid-template-rows: 35px 1fr;  
+                background-color: var(--mainYellow);
+                height: fit-content;
+            }
+
+            &.header-row{
+                border-bottom: 3px solid var(--darkOrange);
+                font-weight: 600;
+                cursor: default;
+                font-size: 18px;
+            }
+
+            .order-details-item{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .order-details-full{
+                grid-column: 1/5;
+                
+                .order-other-info{
+                    padding: 15px;
+                    display: flex;
+                    justify-content: space-between;
+
+                    .order-user-info{
+
+                        display: flex;
+                        flex-direction: column;
+                        row-gap: 5px;
+                        p{
+                            &:first-child{
+                                font-weight: 600;
+                            }
+                            margin:0;
+                        }
+                    }
+                }
+
+                .order-list-items{
+                    display: flex;
+                    flex-direction: column;
+                    
+                    .order-item-card{
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+
+                        &:first-child {
+                            border-top: 1px solid var(--darkOrange);
+                        }
+
+                        &:last-child{
+                            border-bottom: 1px solid var(--darkOrange);
+                        }
+
+                        .order-item-detail{
+                            padding: 5px 0px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                    }
+                }
+                
+                
+            }
+        }
+    }
+}
+
 @keyframes spread{
     0%{
         letter-spacing: 0px;
@@ -921,6 +1049,15 @@ p.success-msg{
             flex-direction: column;
         }
         .order-list{
+            width: 100%;
+        }
+    }
+
+    .admin-wrapper{
+        flex-direction: column;
+        justify-content: flex-start;
+        .admin-tab-picker{
+            flex-direction: row;
             width: 100%;
         }
     }
