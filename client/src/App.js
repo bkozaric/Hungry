@@ -10,6 +10,7 @@ import Cart from "./components/Layout/Cart"
 import Profile from "./components/Profile/Profile"
 import Footer from "./components/Layout/Footer"
 import VerifyEmail from "./components/Auth/VerifyEmail"
+import Admin from "./components/Admin/Admin"
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import {SessionContext} from "./SessionContext";
@@ -48,14 +49,11 @@ function App() {
               <Route path="/cart" component={Cart}></Route>
               <Route exact path="/profile" component={Profile}></Route>
               <Route path="/profile/orders/:oid" component={Profile}></Route>
-        {/*   
-              
+              <Route path="/admin" component={Admin}></Route>
+
+              {/*   
               <Route path="/edit/:id" component={Edit}></Route>
-              <Route path="/view/:id" component={ViewAd}></Route>
-              <Route path="/createAd" component={CreateAd}></Route>
-              <Route exact path="/profile" component={Profile}></Route>
-              <Route path="/profile/order/:oid" component={Profile}></Route>
-               */}
+              <Route path="/createAd" component={CreateAd}></Route>*/}
             </Switch>
           </Router>
     </div>

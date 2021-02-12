@@ -86,7 +86,7 @@ html{
             color: black;
 
             &:hover{
-                animation: spread 1250ms ease-in-out 0ms infinite both;
+                animation: spread 600ms ease-in-out 0ms infinite both;
             }
         }
     }
@@ -272,6 +272,10 @@ label{
 
 p.success-msg{
     text-align: center;
+}
+
+.admin-button{
+    animation: changeColor 2000ms ease-in-out 0ms infinite both;
 }
 
 .food-container{
@@ -881,6 +885,20 @@ p.success-msg{
     }
     100%{
         letter-spacing: 0px;
+    }
+}
+
+@keyframes changeColor{
+    0%{
+        color: hsl(200,90,70);
+
+    }
+    50%{
+        color: hsl(330,90,70);
+
+    }
+    100%{
+        color: hsl(200,90,70);
     }
 }
 

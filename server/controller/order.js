@@ -8,23 +8,27 @@ class Order {
                 .populate("items.id", "name description image price")
                 .sort({ _id: -1 });
             if (Orders) {
-                return res.json(Orders);
+                return res.status(200).json(Orders);
             }
         } catch (err) {
-            console.log(err);
+            return res.status(500).json({ message: err });
         }
     }
 
     async getOrder(req, res) {
+        if (!req.params.oId) {
+            return res.status(400).json({ message: "Order id not provided" })
+        }
+
         try {
             let Orders = await orderModel
                 .find({ _id: req.params.oId })
                 .sort({ _id: -1 });
             if (Orders) {
-                return res.json(Orders);
+                return res.status(200).json(Orders);
             }
         } catch (err) {
-            console.log(err);
+            return res.status(500).json({ message: err });
         }
     }
 

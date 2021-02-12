@@ -7,10 +7,10 @@ class Food {
                 .find().select("name description price image")
                 .sort({ _id: 1 });
             if (Foods) {
-                return res.json(Foods);
+                return res.status(200).json(Foods);
             }
         } catch (err) {
-            console.log(err);
+            return res.status(500).json({ message: err });
         }
     }
 
@@ -23,7 +23,6 @@ class Food {
             }
         } catch (err) {
             return res.status(500).json({ message: err })
-            console.log(err);
         }
     }
 

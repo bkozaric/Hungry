@@ -32,9 +32,9 @@ function Header() {
                     </div>
                     <nav className="navigation">
                         <ul>
-
+                            <li><a href="/admin"><FontAwesomeIcon className
+                                ="admin-button" icon={faTools} /></a></li>
                             <li><a href="/cart"><FontAwesomeIcon icon={faShoppingCart} /></a></li>
-                            <li><a href="/admin"><FontAwesomeIcon icon={faTools} /></a></li>
                             <li><a href="/profile"><FontAwesomeIcon icon={faUser} /></a></li>
                             <li><a onClick={() => logout()} href="#"><FontAwesomeIcon icon={faSignOutAlt} /></a></li>
                         </ul>
