@@ -50,7 +50,6 @@ const ManageUsers = ({ sessionInfo }) => {
                         <div className="user-actions">
                             <FontAwesomeIcon onClick={() => console.log("del user")} icon={faUserSlash} />
                             <FontAwesomeIcon onClick={() => showUserInfo({ ...user })} icon={faAddressCard} />
-
                         </div>
                     </div>)}
                 </div>
