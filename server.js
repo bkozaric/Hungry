@@ -9,8 +9,6 @@ app.use(cors());
 app.use(express.json());
 require('dotenv/config');
 
-const PORT = process.env.PORT || 5000;
-
 mongoose
     .connect(process.env.db_con, {
         useNewUrlParser: true,
