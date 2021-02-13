@@ -53,6 +53,7 @@ html {
   width: 60%;
   min-height: 100%;
   margin: 0 auto;
+  max-width: 1280px;
 }
 
 .footer {
@@ -1503,25 +1504,25 @@ label {
 
 @-webkit-keyframes changeColor {
   0% {
-    color: #6ec9f7;
+    color: #1481b8;
   }
   50% {
-    color: #f76eb3;
+    color: #b81466;
   }
   100% {
-    color: #6ec9f7;
+    color: #1481b8;
   }
 }
 
 @keyframes changeColor {
   0% {
-    color: #6ec9f7;
+    color: #1481b8;
   }
   50% {
-    color: #f76eb3;
+    color: #b81466;
   }
   100% {
-    color: #6ec9f7;
+    color: #1481b8;
   }
 }
 

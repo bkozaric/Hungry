@@ -10,6 +10,8 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 const FoodModal = ({ isOpen, callClose, sessionInfo, callParentUpdate, editMode, editFoodItem }) => {
 
+    const [imageCheck, setImageCheck] = useState(null);
+
     const FoodSchema = Yup.object().shape({
         name: Yup.string()
             .min(4, 'Name too short')
@@ -30,18 +32,26 @@ const FoodModal = ({ isOpen, callClose, sessionInfo, callParentUpdate, editMode,
 
     const addFood = async (values) => {
         try {
-            const body = { ...values, uId: sessionInfo.userId };
-            await fetch("/api/food/addFood", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(body)
-            }).then(answer => answer.json())
-                .then(data => {
-                    if (data?.success === 1) {
-                        callParentUpdate();
-                        callClose();
-                    }
-                });
+            await checkImage(values.image).then(async (isImage) => {
+                if (isImage) {
+                    const body = { ...values, uId: sessionInfo.userId };
+                    await fetch("/api/food/addFood", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(body)
+                    }).then(answer => answer.json())
+                        .then(data => {
+                            if (data?.success === 1) {
+                                callParentUpdate();
+                                callClose();
+                            }
+                        });
+                }
+                else {
+                    setImageCheck(false);
+                }
+            }
+            )
         }
         catch (err) {
             console.error(err);
@@ -58,21 +68,47 @@ const FoodModal = ({ isOpen, callClose, sessionInfo, callParentUpdate, editMode,
                 fId: editFoodItem._id,
                 uId: sessionInfo.userId
             };
-            await fetch("/api/food/editFood/", {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(body)
-            }).then(answer => answer.json())
-                .then(data => {
-                    if (data?.success === 1) {
-                        callParentUpdate();
-                        callClose();
-                    }
-                });
+            await checkImage(values.image).then(async (isImage) => {
+                if (isImage) {
+                    await fetch("/api/food/editFood/", {
+                        method: "PUT",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(body)
+                    }).then(answer => answer.json())
+                        .then(data => {
+                            if (data?.success === 1) {
+                                callParentUpdate();
+                                callClose();
+                            }
+                        });
+                }
+                else {
+                    setImageCheck(false);
+                }
+            })
+
         }
         catch (err) {
             console.error(err);
         }
+    }
+
+    const checkImage = async (imgUrl) => {
+        let isImage = false;
+        setImageCheck(null);
+        if (imgUrl.trim().length > 0) {
+            await fetch("/api/food/checkImage", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ url: imgUrl })
+            }).then(answer => answer.json())
+                .then(data => {
+                    if (data.isImage === 1) {
+                        isImage = true;
+                    }
+                });
+        }
+        return isImage;
     }
 
     if (!isOpen) return null
@@ -166,7 +202,7 @@ const FoodModal = ({ isOpen, callClose, sessionInfo, callParentUpdate, editMode,
                                     <div className="input-row">
                                         <button className="submit-button" type="submit">Edit</button>
                                     </div>
-                                    {/*!success && <p className="error-msg">{loginMessage}</p>*/}
+                                    {imageCheck === false ? <p className="error-msg">Please enter a URL to an image</p> : null}
                                 </form>)}
                         </Formik>
                     </div>
@@ -264,7 +300,7 @@ const FoodModal = ({ isOpen, callClose, sessionInfo, callParentUpdate, editMode,
                                 <div className="input-row">
                                     <button className="submit-button" type="submit">Add</button>
                                 </div>
-                                {/*!success && <p className="error-msg">{loginMessage}</p>*/}
+                                {imageCheck === false ? <p className="error-msg">Please enter a URL to an image</p> : null}
                             </form>)}
                     </Formik>
                 </div>

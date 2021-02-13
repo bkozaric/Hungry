@@ -1,5 +1,7 @@
 const foodModel = require("../models/foods");
 
+const fetch = require("node-fetch");
+
 class Food {
     async getFoods(req, res) {
         try {
@@ -118,6 +120,22 @@ class Food {
             return res.status(500).json({ message: err });
         }
     }
+
+    async checkImage(req, res) {
+        try {
+            const response = await fetch(req.body.url);
+            if (response.status === 200) {
+                if (response.headers.get("content-type").startsWith("image")) {
+                    return res.json({ isImage: 1 });
+                }
+            } else {
+                return res.json({ isImage: 0 });
+            }
+        } catch (err) {
+            return res.json({ error: err, isImage: 0 });
+        }
+    }
+
 }
 
 const foodsController = new Food();

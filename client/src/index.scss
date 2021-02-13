@@ -51,7 +51,7 @@ html{
     width:60%;
     min-height: 100%;
     margin: 0 auto;
-    
+    max-width: 1280px;    
 }
 
 .footer{
@@ -1195,15 +1195,15 @@ label{
 
 @keyframes changeColor{
     0%{
-        color: hsl(200,90,70);
+        color: hsl(200,80,40);
 
     }
     50%{
-        color: hsl(330,90,70);
+        color: hsl(330,80,40);
 
     }
     100%{
-        color: hsl(200,90,70);
+        color: hsl(200,80,40);
     }
 }
 

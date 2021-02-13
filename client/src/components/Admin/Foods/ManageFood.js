@@ -69,7 +69,7 @@ const ManageFood = ({ sessionInfo }) => {
                     </div>
                     {foods.map((food, k) => <div className="food-item-row" key={k}>
                         <div>{food.name}</div>
-                        <div>{food.price}</div>
+                        <div>${food.price}</div>
                         <div>{food.description}</div>
                         <div className="food-actions">
                             <FontAwesomeIcon onClick={() => deleteFood(food._id)} icon={faTrash} />
