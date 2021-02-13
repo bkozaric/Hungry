@@ -24,7 +24,7 @@ const Cart = () => {
             await fetch("/api/order/createOrder", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ reduceBody: [...reduceBody], cartTotal: cartTotal })
+                body: JSON.stringify({ reduceBody: [...reduceBody], cartTotal: cartTotal, email: sessionInfo.email })
             }).then(answer => answer.json())
                 .then(data => {
                     if (data.success) {

@@ -6,6 +6,20 @@ const JWT_SECRET = process.env.jwt_secret;
 
 class User {
     async getUsers(req, res) {
+        if (!req.params.uId) {
+            return res.status(403).json({ message: "Missing parameters" });
+        }
+        if (!req.session.userId) {
+            return res.status(403).json({ message: "Access denied" });
+        }
+        if (req.params.uId != req.session.userId) {
+            return res.status(401).json({ message: "Access denied" });
+        }
+
+        if (!req.session.isAdmin) {
+            return res.status(403).json({ success: 0, message: "Insufficent permissions" });
+        }
+
         try {
             let Users = await userModel
                 .find({})

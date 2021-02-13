@@ -16,7 +16,7 @@ const ManageUsers = ({ sessionInfo }) => {
 
     const getUsers = async () => {
         try {
-            const response = await fetch("/api/user/allUsers");
+            const response = await fetch(`/api/user/allUsers/${sessionInfo.userId}`);
             const userJson = await response.json();
             setUsers(userJson);
 

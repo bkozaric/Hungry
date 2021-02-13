@@ -5,7 +5,7 @@ const usersController = require("../controller/user");
 
 router
     .get("/checkSession", usersController.checkSession)
-    .get("/allUsers", usersController.getUsers)
+    .get("/allUsers/:uId", usersController.getUsers)
     .get("/logout", usersController.logout)
     .get("/verify/:token", usersController.verifyAccount)
     .get("/userInfo/:uId", usersController.getUserInfo)

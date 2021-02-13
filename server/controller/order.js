@@ -1,5 +1,6 @@
 const orderModel = require("../models/orders");
 
+
 class Order {
 
     async getAllOrders(req, res) {
@@ -77,6 +78,10 @@ class Order {
         if (!req.session.userId) {
             return res.status(403).json({ message: "Not logged in." })
         }
+        if (!Order || !cartTotal) {
+            return res.status(400).json({ message: "Missing parameters" });
+        }
+
         try {
             let newOrder = new orderModel({
                 userId: req.session.userId,
