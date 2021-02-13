@@ -953,6 +953,76 @@ label{
             }
         }
 
+        .admin-list-users{
+            display: flex;
+            flex-direction: column;
+            .user-item-row{
+                height: 40px;
+
+                .user-actions{
+                    display: flex;
+                    column-gap: 10px;
+                    font-size: 22px;
+                }
+
+                &:nth-child(2n-1){
+                    background-color: #ebda39;
+                }
+
+                display: grid;
+                grid-template-columns: 40% 40% 20%;
+                //grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+
+                div{
+                    display: flex;
+                    //justify-content: center;
+                    align-items: center;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    
+
+                    &:nth-child(1){
+                        margin-left: 15px;
+                        //justify-self: flex-start;
+                    }
+                    /*
+                    &:nth-child(3) {
+                        //padding: 0px 5%;
+                        
+                    }*/
+
+                    &:nth-child(2){
+                        justify-self: center;
+                    }
+
+                    &.user-actions{
+                        justify-self: center;
+                        padding: 0px 12px;
+                    }
+
+                    &.user-actions>*{
+                        cursor: pointer;
+                        transition: all 200ms ease-in-out;
+                        &:hover{
+                            transform: scale(1.25);
+                            filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.541));
+                        }
+                    }
+                }
+
+                &.head-row{
+                    font-weight: 600;
+                    height: 55px;
+
+                    div{
+                        justify-self: center;
+                        
+                    }
+                }
+            }
+        }
+
         .admin-list-foods{
             display: flex;
             flex-direction: column;
@@ -1146,13 +1216,65 @@ label{
     }
 }
 
+.admin-detailed-user-info{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+
+    .user-details-row{
+        display: flex;
+        width: 100%;
+        font-size: 16px;
+
+        &.highlight-row{
+            font-weight: 600;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        &.indent-row{
+            margin-left: 15px;
+        }
+
+        div:first-child{
+            width: 60%;
+        }
+
+        div:nth-child(2){
+            width: 40%;
+        }
+    }
+}
+
+.change-user-role-button{
+    text-transform: uppercase;
+    margin-top: 20px;
+    padding: 10px 0px;
+    border: none;
+    background-color: var(--darkOrange);
+    font-size: 15px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 150ms ease-in-out;
+
+    &:hover{
+        letter-spacing: 1px;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.219);
+    }
+}
+
+.new-food-form{
+    width: 350px;
+}
+
 .modal-container{
     position: fixed;
     display: flex;
     flex-direction: column;
     top: 50%;
     left: 50%;
-    width: 300px;
+    width: fit-content;
     transform: translate(-50%, -50%);
     background-color: var(--mainYellow);
     padding: 50px;

@@ -132,7 +132,7 @@ const FoodModal = ({ isOpen, callClose, sessionInfo, callParentUpdate, editMode,
                             }}
                         >
                             {({ values, setFieldValue, errors, touched, handleSubmit }) => (
-                                <form className="input-info-container login-form" onSubmit={handleSubmit}>
+                                <form className="input-info-container" onSubmit={handleSubmit}>
                                     <div className="input-row">
                                         <div className="input-column">
                                             <label htmlFor="name">Name:</label>
@@ -230,7 +230,7 @@ const FoodModal = ({ isOpen, callClose, sessionInfo, callParentUpdate, editMode,
                         }}
                     >
                         {({ values, setFieldValue, errors, touched, handleSubmit }) => (
-                            <form className="input-info-container login-form" onSubmit={handleSubmit}>
+                            <form className="input-info-container" onSubmit={handleSubmit}>
                                 <div className="input-row">
                                     <div className="input-column">
                                         <label htmlFor="name">Name:</label>

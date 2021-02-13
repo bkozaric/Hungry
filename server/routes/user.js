@@ -13,6 +13,7 @@ router
     .post("/login", usersController.login)
     .put("/changePassword", usersController.changePassword)
     .put("/changeUserInfo", usersController.changeUserInfo)
+    .put("/changeUserRole", usersController.changeRole)
     .delete("/deleteAccount/:uId", usersController.deleteAccount)
 
 module.exports = router;

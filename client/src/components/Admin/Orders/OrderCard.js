@@ -10,7 +10,6 @@ const OrderCard = ({ order, sessionInfo, updateOrdersParent }) => {
         setNewOrderStatus(e.target.value);
     }
 
-
     const updateOrderStatus = async (e) => {
         e.stopPropagation();
         if (newOrderStatus) {
@@ -26,7 +25,6 @@ const OrderCard = ({ order, sessionInfo, updateOrdersParent }) => {
                     body: JSON.stringify(body)
                 }).then(answer => answer.json())
                     .then(data => {
-                        console.log(data.message);
                         if (data?.success === 1) {
                             updateOrdersParent();
                         }

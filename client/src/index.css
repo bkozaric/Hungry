@@ -1184,6 +1184,92 @@ label {
           box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.219);
 }
 
+.admin-wrapper .admin-dashboard .admin-list-users {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.admin-wrapper .admin-dashboard .admin-list-users .user-item-row {
+  height: 40px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 40% 40% 20%;
+      grid-template-columns: 40% 40% 20%;
+}
+
+.admin-wrapper .admin-dashboard .admin-list-users .user-item-row .user-actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-column-gap: 10px;
+          column-gap: 10px;
+  font-size: 22px;
+}
+
+.admin-wrapper .admin-dashboard .admin-list-users .user-item-row:nth-child(2n-1) {
+  background-color: #ebda39;
+}
+
+.admin-wrapper .admin-dashboard .admin-list-users .user-item-row div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /*
+                    &:nth-child(3) {
+                        //padding: 0px 5%;
+                        
+                    }*/
+}
+
+.admin-wrapper .admin-dashboard .admin-list-users .user-item-row div:nth-child(1) {
+  margin-left: 15px;
+}
+
+.admin-wrapper .admin-dashboard .admin-list-users .user-item-row div:nth-child(2) {
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+.admin-wrapper .admin-dashboard .admin-list-users .user-item-row div.user-actions {
+  -ms-grid-column-align: center;
+      justify-self: center;
+  padding: 0px 12px;
+}
+
+.admin-wrapper .admin-dashboard .admin-list-users .user-item-row div.user-actions > * {
+  cursor: pointer;
+  -webkit-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+}
+
+.admin-wrapper .admin-dashboard .admin-list-users .user-item-row div.user-actions > *:hover {
+  -webkit-transform: scale(1.25);
+          transform: scale(1.25);
+  -webkit-filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.541));
+          filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.541));
+}
+
+.admin-wrapper .admin-dashboard .admin-list-users .user-item-row.head-row {
+  font-weight: 600;
+  height: 55px;
+}
+
+.admin-wrapper .admin-dashboard .admin-list-users .user-item-row.head-row div {
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
 .admin-wrapper .admin-dashboard .admin-list-foods {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1428,6 +1514,67 @@ label {
   margin-left: 15px;
 }
 
+.admin-detailed-user-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 500px;
+}
+
+.admin-detailed-user-info .user-details-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  font-size: 16px;
+}
+
+.admin-detailed-user-info .user-details-row.highlight-row {
+  font-weight: 600;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.admin-detailed-user-info .user-details-row.indent-row {
+  margin-left: 15px;
+}
+
+.admin-detailed-user-info .user-details-row div:first-child {
+  width: 60%;
+}
+
+.admin-detailed-user-info .user-details-row div:nth-child(2) {
+  width: 40%;
+}
+
+.change-user-role-button {
+  text-transform: uppercase;
+  margin-top: 20px;
+  padding: 10px 0px;
+  border: none;
+  background-color: var(--darkOrange);
+  font-size: 15px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+}
+
+.change-user-role-button:hover {
+  letter-spacing: 1px;
+  -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.219);
+          box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.219);
+}
+
+.new-food-form {
+  width: 350px;
+}
+
 .modal-container {
   position: fixed;
   display: -webkit-box;
@@ -1439,7 +1586,9 @@ label {
           flex-direction: column;
   top: 50%;
   left: 50%;
-  width: 300px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   background-color: var(--mainYellow);

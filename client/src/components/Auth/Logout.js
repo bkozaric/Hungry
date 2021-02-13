@@ -14,10 +14,7 @@ const Logout = () => {
 
     return (
         <div className="auth-container">
-            <div className="form">
-                <p className="already-logged">You are already logged in</p>
-                <button onClick={logout}>Logout</button>
-            </div>
+            <p className="error-msg">You are already logged in</p>
         </div>
     );
 }

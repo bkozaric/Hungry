@@ -4,6 +4,7 @@ import { SessionContext } from '../../SessionContext';
 import TabPicker from "./TabPicker";
 import ManangeOrders from "./Orders/ManangeOrders";
 import ManageFood from "./Foods/ManageFood"
+import ManageUsers from "./Users/ManageUsers"
 
 const Admin = () => {
     const sessionInfo = useContext(SessionContext);
@@ -36,16 +37,14 @@ const Admin = () => {
             return (
                 <div className="admin-wrapper">
                     <TabPicker changeTab={changeTab} parentCurrentTab={2} />
-                    <div className="admin-dashboard">
-                        Manage users
-                    </div>
+                    <ManageUsers sessionInfo={sessionInfo} />
                 </div>
             )
         }
         return null;
     }
-    return (<div>
-        YOU ARE NOT ADMIN MAN :(
+    return (<div className="auth-container">
+        <p className="error-msg">You do not have sufficent permissions to access this page.</p>
     </div>)
 
 }

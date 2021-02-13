@@ -9,13 +9,44 @@ class User {
         try {
             let Users = await userModel
                 .find({})
-                .select("email")
+                .select("firstName lastName email address city zipcode phone verified createdAt userRole")
                 .sort({ _id: -1 });
             if (Users) {
-                return res.json({ Users });
+                return res.json(Users);
             }
         } catch (err) {
             console.log(err);
+        }
+    }
+
+    async changeRole(req, res) {
+        let { uIdAdmin, userIdForPromotion, userRole } = req.body;
+        if (!uIdAdmin || !userIdForPromotion || ![0, 1].includes(userRole)) {
+            return res.status(400).json({ success: 0, message: "All fields are required" });
+        }
+        if (!req.session.userId) {
+            return res.status(403).json({ success: 0, message: "Access denied" });
+        }
+        if (uIdAdmin != req.session.userId) {
+            return res.status(401).json({ success: 0, message: "Access denied" });
+        }
+        if (!req.session.isAdmin) {
+            return res.status(403).json({ success: 0, message: "Insufficent permissions" });
+        }
+
+        const data = await userModel.findById(userIdForPromotion);
+        if (!data) {
+            return res.status(404).json({
+                success: 0, message: "User does not exist",
+            });
+        } else {
+            let userChange = userModel.findByIdAndUpdate(userIdForPromotion, {
+                userRole
+            }, { useFindAndModify: false });
+            userChange.exec((err, result) => {
+                if (err) console.log(err);
+                return res.status(200).json({ success: 1, message: "User role updated successfully!" });
+            });
         }
     }
 
@@ -110,11 +141,6 @@ class User {
             } catch (err) {
                 return res.json({ error: err });
             }
-
-            /*
-            if (success) {
-                
-            }*/
 
         }
         catch (err) {
