@@ -2,7 +2,8 @@ import React, { useState, useEffect, useContext } from 'react'
 import { SessionContext } from '../../SessionContext';
 
 import TabPicker from "./TabPicker";
-import ManangeOrders from "./ManangeOrders";
+import ManangeOrders from "./Orders/ManangeOrders";
+import ManageFood from "./Foods/ManageFood"
 
 const Admin = () => {
     const sessionInfo = useContext(SessionContext);
@@ -19,7 +20,7 @@ const Admin = () => {
             return (
                 <div className="admin-wrapper">
                     <TabPicker changeTab={changeTab} parentCurrentTab={0} />
-                    <ManangeOrders />
+                    <ManangeOrders sessionInfo={sessionInfo} />
                 </div>
             )
         }
@@ -27,9 +28,7 @@ const Admin = () => {
             return (
                 <div className="admin-wrapper">
                     <TabPicker changeTab={changeTab} parentCurrentTab={1} />
-                    <div className="admin-dashboard">
-                        Manage food
-                    </div>
+                    <ManageFood sessionInfo={sessionInfo} />
                 </div>
             )
         }

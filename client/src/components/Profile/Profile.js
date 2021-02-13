@@ -158,7 +158,7 @@ const Profile = (props) => {
                                             </div>
                                             <div className="order-details-right">
                                                 <p className="order-total">Order total: ${currentPreviewOrder.totalPrice}</p>
-                                                <button onClick={() => cancelOrder(currentPreviewOrder._id)} className="cancel-order">Cancel order</button>
+                                                {currentPreviewOrder.status === "Processing" ? <button onClick={() => cancelOrder(currentPreviewOrder._id)} className="cancel-order">Cancel order</button> : null}
                                             </div>
 
                                         </div>

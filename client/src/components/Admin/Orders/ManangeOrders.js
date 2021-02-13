@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 
 import OrderCard from "./OrderCard";
 
-const ManangeOrders = () => {
+const ManangeOrders = ({ sessionInfo }) => {
 
     const [orders, setOrders] = useState([]);
 
@@ -30,7 +30,7 @@ const ManangeOrders = () => {
                     <div className="order-details-user order-details-item">User</div>
                     <div className="order-details-status order-details-item">Status</div>
                 </div>
-                {orders.map((order, i) => <OrderCard key={i} order={order} />)}
+                {orders.map((order, i) => <OrderCard updateOrdersParent={getOrders} sessionInfo={sessionInfo} key={i} order={order} />)}
             </div>
         )
     }

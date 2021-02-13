@@ -22,6 +22,16 @@ html{
     outline: none;
 }
 
+.modal-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 1000;
+}
+
 #root{
     position: relative;
     height: 100%;
@@ -881,10 +891,12 @@ label{
     display: flex;
     width: 100%;
     justify-content: center;
+    
 
     background-color: var(--accentOrange);
     min-height: 600px;
     margin-top: 100px;
+    margin-bottom: 200px;
 
     .admin-tab-picker{
         box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
@@ -918,12 +930,106 @@ label{
         height: 100%;
         row-gap: 5px;
         flex-direction: column;
+        box-sizing: border-box;
+
+
+        .add-food-button{
+            margin-top: 30px;
+            padding: 15px 20px;
+            border: none;
+            background-color: #c09c27;
+            justify-self: flex-end;
+            color:white;
+            transition: all 150ms ease-in-out;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 15px;
+            font-weight: 600;
+
+
+            &:hover{
+                letter-spacing: 1px;
+                box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.219);
+            }
+        }
+
+        .admin-list-foods{
+            display: flex;
+            flex-direction: column;
+            .food-item-row{
+                height: 40px;
+
+                .food-actions{
+                    display: flex;
+                    column-gap: 10px;
+                    font-size: 22px;
+                }
+
+                &:nth-child(2n-1){
+                    background-color: #ebda39;
+                }
+
+                display: grid;
+                grid-template-columns: 25% 10% 50% 15%;
+                //grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+
+                div{
+                    display: flex;
+                    //justify-content: center;
+                    align-items: center;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    
+
+                    &:nth-child(1){
+                        margin-left: 15px;
+                        //justify-self: flex-start;
+                    }
+                    /*
+                    &:nth-child(3) {
+                        //padding: 0px 5%;
+                        
+                    }*/
+
+                    &:nth-child(2){
+                        justify-self: center;
+                    }
+
+                    &.food-actions{
+                        justify-self: center;
+                        padding: 0px 12px;
+                    }
+
+                    &.food-actions>*{
+                        cursor: pointer;
+                        transition: all 200ms ease-in-out;
+                        &:hover{
+                            transform: scale(1.25);
+                            filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.541));
+                        }
+                    }
+                }
+
+                &.head-row{
+                    font-weight: 600;
+                    height: 55px;
+
+                    div{
+                        justify-self: center;
+                        
+                    }
+                }
+            }
+        }
+
 
         .order-card{
             width: 100%;
             height: 35px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+            //grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+            grid-template-columns: 35% 15% 20% 20%;
             
             grid-template-rows: 35px 0px;
             overflow-y: hidden;
@@ -959,6 +1065,32 @@ label{
                     display: flex;
                     justify-content: space-between;
 
+                    .order-actions-wrapper{
+                        display: flex;
+                        flex-direction: column;
+                        row-gap: 6px;
+
+                        .admin-order-status-dropdown{
+                            padding:5px 0px;
+                        }
+
+
+                        .admin-update-order-status-button{
+                            background-color: #c09c27;
+                            color:white;
+
+                            padding: 8px 20px;
+                            border: none;
+                            transition: all 150ms ease-in-out;
+                            font-size: 14px;
+                            cursor: pointer;
+
+                            &:hover{
+                                box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.219);
+                            }
+                        }
+                    }
+
                     .order-user-info{
 
                         display: flex;
@@ -980,6 +1112,11 @@ label{
                     .order-item-card{
                         display: grid;
                         grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+                        //grid-template-columns: 35% 15% 20% 20%;
+
+                        &:nth-child(2n-1){
+                            background-color: #f6e864;
+                        }
 
                         &:first-child {
                             border-top: 1px solid var(--darkOrange);
@@ -990,6 +1127,11 @@ label{
                         }
 
                         .order-item-detail{
+
+                            &:first-child{
+                                justify-self: flex-start;
+                                margin-left: 15px;
+                            }
                             padding: 5px 0px;
                             display: flex;
                             justify-content: center;
@@ -1000,6 +1142,41 @@ label{
                 
                 
             }
+        }
+    }
+}
+
+.modal-container{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    transform: translate(-50%, -50%);
+    background-color: var(--mainYellow);
+    padding: 50px;
+    z-index: 1000;
+
+    .close-modal-button{
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        background-color: rgb(226, 146, 18);
+        border: none;
+        border-radius: 50%;
+        transition: all 120ms ease-in-out;
+        color: white;
+        font-size: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 28px;
+        height: 28px;
+
+        &:hover{
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+            transform: scale(1.2);
         }
     }
 }
