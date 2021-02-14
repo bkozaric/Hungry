@@ -109,9 +109,9 @@ class Order {
             return res.status(403).json({ message: "Access denied." })
         }
         try {
-            let deleteOrder = await orderModel.findByIdAndDelete(req.params.oId);
+            let deleteOrder = await orderModel.findByIdAndUpdate(req.params.oId, { status: "Canceled" }, { useFindAndModify: false });
             if (deleteOrder) {
-                return res.status(200).json({ success: 1, message: "Order deleted successfully" });
+                return res.status(200).json({ success: 1, message: "Order canceled successfully" });
             }
         } catch (err) {
             return res.json({ message: err })

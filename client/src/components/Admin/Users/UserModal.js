@@ -31,6 +31,30 @@ const UserModal = ({ isOpen, callClose, sessionInfo, userInfo, callParentUpdate 
 
     }
 
+    const changeAccountStatus = async (newStatus, userIdForChangeStatus) => {
+        try {
+            const body = {
+                newStatus: newStatus,
+                userIdForChangeStatus: userIdForChangeStatus,
+                uIdAdmin: sessionInfo.userId
+            };
+            await fetch("/api/user/changeAccountStatus", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body)
+            }).then(answer => answer.json())
+                .then(data => {
+                    if (data?.success === 1) {
+                        callParentUpdate();
+                        callClose();
+                    }
+                });
+        }
+        catch (err) {
+
+        }
+    }
+
     if (!isOpen) return null
 
     return ReactDom.createPortal(
@@ -77,16 +101,18 @@ const UserModal = ({ isOpen, callClose, sessionInfo, userInfo, callParentUpdate 
                         <div>{userInfo.userRole === 0 ? "Regular user" : "Admin"}</div>
                     </div>
                     <div className="user-details-row highlight-row">
-                        <div>Date of Registration</div>
+                        <div>User Disabled?</div>
                         <div>Time of Registration</div>
                     </div>
                     <div className="user-details-row indent-row">
-                        <div>{new Date(userInfo.createdAt).toLocaleDateString()}</div>
-                        <div>{new Date(userInfo.createdAt).toLocaleTimeString()}</div>
+                        <div>{userInfo.disabled.toUpperCase()}</div>
+                        <div>{new Date(userInfo.createdAt).toLocaleDateString()} {new Date(userInfo.createdAt).toLocaleTimeString()}</div>
                     </div>
                 </div>
                 {userInfo.userRole === 0 ? <button onClick={() => changeUserRole(1, userInfo._id)} className="change-user-role-button">Promote to Admin</button> : null}
                 {userInfo.userRole === 1 ? <button onClick={() => changeUserRole(0, userInfo._id)} className="change-user-role-button">Demote to Regular User</button> : null}
+                {userInfo.disabled === "true" ? <button onClick={() => changeAccountStatus("false", userInfo._id)} className="change-account-status-button">Reinstate account</button> : null}
+                {userInfo.disabled === "false" ? <button onClick={() => changeAccountStatus("true", userInfo._id)} className="change-account-status-button">Disable account</button> : null}
                 <button className="close-modal-button" onClick={() => callClose()}><FontAwesomeIcon icon={faTimes} /></button>
             </div>
         </>,

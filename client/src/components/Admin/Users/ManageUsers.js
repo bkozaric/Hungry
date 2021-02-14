@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserSlash } from '@fortawesome/free-solid-svg-icons'
-import { faAddressCard } from '@fortawesome/free-solid-svg-icons'
+import { faUserCog } from '@fortawesome/free-solid-svg-icons'
 
 import UserModal from "./UserModal"
 
@@ -48,8 +47,7 @@ const ManageUsers = ({ sessionInfo }) => {
                         <div>{user._id}</div>
                         <div>{user.firstName} {user.lastName}</div>
                         <div className="user-actions">
-                            <FontAwesomeIcon onClick={() => console.log("del user")} icon={faUserSlash} />
-                            <FontAwesomeIcon onClick={() => showUserInfo({ ...user })} icon={faAddressCard} />
+                            <FontAwesomeIcon onClick={() => showUserInfo({ ...user })} icon={faUserCog} />
                         </div>
                     </div>)}
                 </div>

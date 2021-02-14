@@ -23,7 +23,7 @@ class User {
         try {
             let Users = await userModel
                 .find({})
-                .select("firstName lastName email address city zipcode phone verified createdAt userRole")
+                .select("firstName lastName email address city zipcode phone verified createdAt userRole disabled")
                 .sort({ _id: -1 });
             if (Users) {
                 return res.json(Users);
@@ -166,7 +166,7 @@ class User {
     async login(req, res) {
         try {
             const { email, password } = req.body;
-            let User = await userModel.findOne({ email: email });
+            let User = await userModel.findOne({ email: email, disabled: "false" });
             if (User) {
                 const correctPass = await bcrypt.compare(password, User.password);
                 if (correctPass) {
@@ -299,6 +299,37 @@ class User {
         }
     }
 
+    async changeAccountStatus(req, res) {
+        let { uIdAdmin, userIdForChangeStatus, newStatus } = req.body;
+        if (!uIdAdmin || !userIdForChangeStatus || !["true", "false"].includes(newStatus)) {
+            return res.status(400).json({ success: 0, message: "All fields are required" });
+        }
+        if (!req.session.userId) {
+            return res.status(403).json({ success: 0, message: "Access denied" });
+        }
+        if (uIdAdmin != req.session.userId) {
+            return res.status(401).json({ success: 0, message: "Access denied" });
+        }
+        if (!req.session.isAdmin) {
+            return res.status(403).json({ success: 0, message: "Insufficent permissions" });
+        }
+
+        const data = await userModel.findById(userIdForChangeStatus);
+        if (!data) {
+            return res.status(404).json({
+                success: 0, message: "User does not exist",
+            });
+        } else {
+            let userChange = userModel.findByIdAndUpdate(userIdForChangeStatus, {
+                disabled: newStatus
+            }, { useFindAndModify: false });
+            userChange.exec((err, result) => {
+                if (err) console.log(err);
+                return res.status(200).json({ success: 1, message: "User status updated successfully!" });
+            });
+        }
+    }
+
     async deleteAccount(req, res) {
         if (!req.params.uId) {
             return res.status(403).json({ message: "Missing parameters" });
@@ -310,7 +341,7 @@ class User {
             return res.status(401).json({ message: "Access denied" });
         }
         try {
-            let User = await userModel.findByIdAndDelete(req.params.uId);
+            let User = await userModel.findByIdAndUpdate(req.params.uId, { disabled: "true" }, { useFindAndModify: false });
             if (User) {
                 return res.status(200).json({ success: 1, message: "Account deleted." });
             }

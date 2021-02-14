@@ -14,6 +14,7 @@ router
     .put("/changePassword", usersController.changePassword)
     .put("/changeUserInfo", usersController.changeUserInfo)
     .put("/changeUserRole", usersController.changeRole)
+    .put("/changeAccountStatus", usersController.changeAccountStatus)
     .delete("/deleteAccount/:uId", usersController.deleteAccount)
 
 module.exports = router;

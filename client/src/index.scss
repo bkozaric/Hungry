@@ -1290,6 +1290,24 @@ label{
     }
 }
 
+.change-account-status-button{
+    text-transform: uppercase;
+    margin-top: 10px;
+    padding: 10px 0px;
+    border: none;
+    background-color: rgb(25, 134, 40);
+    font-size: 15px;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 150ms ease-in-out;
+
+    &:hover{
+        letter-spacing: 1px;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.219);
+    }
+}
+
 .change-user-role-button{
     text-transform: uppercase;
     margin-top: 20px;
@@ -1298,7 +1316,7 @@ label{
     background-color: var(--darkOrange);
     font-size: 15px;
     color: white;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
     transition: all 150ms ease-in-out;
 
