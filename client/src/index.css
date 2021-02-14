@@ -208,6 +208,37 @@ html {
 .navigation ul li {
   -webkit-transition: all 150ms ease-in-out;
   transition: all 150ms ease-in-out;
+  position: relative;
+}
+
+.navigation ul li.admin-li::after {
+  content: "Dashboard";
+  display: none;
+  left: -20px;
+}
+
+.navigation ul li.cart-li::after {
+  content: "Cart";
+  display: none;
+  left: 3px;
+}
+
+.navigation ul li.profile-li::after {
+  content: "Profile";
+  display: none;
+  left: -9px;
+}
+
+.navigation ul li.logout-li::after {
+  content: "Logout";
+  display: none;
+  left: -10px;
+}
+
+.navigation ul li.login-li::after {
+  content: "Login";
+  display: none;
+  left: -5px;
 }
 
 .navigation ul li:hover {
@@ -215,8 +246,13 @@ html {
           transform: scale(1.1);
 }
 
-.navigation ul li.cart-li {
-  position: relative;
+.navigation ul li:hover::after {
+  position: absolute;
+  font-size: 13px;
+  text-align: center;
+  display: block;
+  -webkit-animation: tooltip 300ms ease-in 0ms both;
+          animation: tooltip 300ms ease-in 0ms both;
 }
 
 .navigation ul li:last-child {
@@ -1737,6 +1773,72 @@ label {
   }
   100% {
     height: 0px;
+  }
+}
+
+@-webkit-keyframes tooltip {
+  0% {
+    opacity: 0;
+    bottom: 0px;
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+  }
+  25% {
+    opacity: 0.25;
+    bottom: 0px;
+    -webkit-transform: scaleX(0.3);
+            transform: scaleX(0.3);
+  }
+  50% {
+    opacity: 0.5;
+    bottom: -5px;
+    -webkit-transform: scaleX(0.6);
+            transform: scaleX(0.6);
+  }
+  75% {
+    opacity: 0.75;
+    bottom: -20px;
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+  }
+  100% {
+    opacity: 1;
+    bottom: -15px;
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+  }
+}
+
+@keyframes tooltip {
+  0% {
+    opacity: 0;
+    bottom: 0px;
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+  }
+  25% {
+    opacity: 0.25;
+    bottom: 0px;
+    -webkit-transform: scaleX(0.3);
+            transform: scaleX(0.3);
+  }
+  50% {
+    opacity: 0.5;
+    bottom: -5px;
+    -webkit-transform: scaleX(0.6);
+            transform: scaleX(0.6);
+  }
+  75% {
+    opacity: 0.75;
+    bottom: -20px;
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+  }
+  100% {
+    opacity: 1;
+    bottom: -15px;
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
   }
 }
 

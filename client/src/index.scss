@@ -149,13 +149,49 @@ html{
 
         li{
             transition: all 150ms ease-in-out;
-            &:hover{
-                transform: scale(1.1);
+            position: relative;
+
+            &.admin-li::after{
+                content: "Dashboard";
+                display: none;
+                left:-20px;
             }
 
-            &.cart-li{
-                position: relative;
-                
+            &.cart-li::after{
+                content: "Cart";
+                display: none;
+                left:3px;
+            }
+
+            &.profile-li::after{
+                content: "Profile";
+                display: none;
+                left:-9px;
+            }
+
+            &.logout-li::after{
+                content: "Logout";
+                display: none;
+                left:-10px;
+            }
+
+            &.login-li::after{
+                content: "Login";
+                display: none;
+                left:-5px;
+            }
+            
+
+            &:hover{
+                transform: scale(1.1);
+
+                &::after{
+                    position: absolute;
+                    font-size: 13px;
+                    text-align: center;
+                    display: block;
+                    animation: tooltip 300ms ease-in 0ms both;
+                }
             }
 
             &:last-child{
@@ -1379,6 +1415,39 @@ label{
     }
     100%{
         height: 0px;
+    }
+}
+
+@keyframes tooltip{
+    0%{
+        opacity: 0;
+        bottom: 0px;
+        transform: scaleX(0);
+    }
+
+    25%{
+        opacity: 0.25;
+        bottom: 0px;
+        transform: scaleX(0.3);
+    }
+
+    50%{
+        opacity: 0.5;
+        bottom: -5px;
+        transform: scaleX(0.6);
+    }
+
+    75%{
+        opacity: 0.75;
+        bottom: -20px;
+        transform: scaleX(1);
+    }
+
+
+    100%{
+        opacity: 1;
+        bottom: -15px;
+        transform: scaleX(1);
     }
 }
 

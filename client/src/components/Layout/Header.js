@@ -36,14 +36,14 @@ function Header({ cartCount }) {
                     </div>
                     <nav className="navigation">
                         <ul>
-                            <li><a href="/admin"><FontAwesomeIcon className
+                            <li className="admin-li"><a href="/admin"><FontAwesomeIcon className
                                 ="admin-button" icon={faTools} /></a></li>
                             <li className="cart-li"><a href="/cart"><FontAwesomeIcon icon={faShoppingCart} />
                             </a>
                                 <div className="cart-indicator">{cartCount}</div>
                             </li>
-                            <li><a href="/profile"><FontAwesomeIcon icon={faUser} /></a></li>
-                            <li><a onClick={() => logout()} href="#"><FontAwesomeIcon icon={faSignOutAlt} /></a></li>
+                            <li className="profile-li"><a href="/profile"><FontAwesomeIcon icon={faUser} /></a></li>
+                            <li className="logout-li"><a onClick={() => logout()} href="#"><FontAwesomeIcon icon={faSignOutAlt} /></a></li>
                         </ul>
                     </nav>
                 </div>
@@ -59,8 +59,8 @@ function Header({ cartCount }) {
                         <li className="cart-li"><a href="/cart"><FontAwesomeIcon icon={faShoppingCart} /></a>
                             <div className="cart-indicator">{cartCount}</div>
                         </li>
-                        <li><a href="/profile"><FontAwesomeIcon icon={faUser} /></a></li>
-                        <li><a onClick={() => logout()} href="#"><FontAwesomeIcon icon={faSignOutAlt} /></a></li>
+                        <li className="profile-li"><a href="/profile"><FontAwesomeIcon icon={faUser} /></a></li>
+                        <li className="login-li"><a onClick={() => logout()} href="#"><FontAwesomeIcon icon={faSignOutAlt} /></a></li>
                     </ul>
                 </nav>
             </div>
@@ -77,7 +77,7 @@ function Header({ cartCount }) {
                         <li className="cart-li"><a href="/cart"><FontAwesomeIcon icon={faShoppingCart} /></a>
                             <div className="cart-indicator">{cartCount}</div>
                         </li>
-                        <li><a href="/login"><FontAwesomeIcon icon={faSignInAlt} /></a></li>
+                        <li className="login-li"><a href="/login"><FontAwesomeIcon icon={faSignInAlt} /></a></li>
                     </ul>
                 </nav>
             </div>
