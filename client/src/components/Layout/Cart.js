@@ -141,9 +141,14 @@ const Cart = ({ updateCart }) => {
                             <button className="clear-cart-button" onClick={() => clearCart()}>Clear cart</button>
                             <button className="submit-order-button" onClick={() => orderFood()}>Order</button>
                         </div> : null}
-                    {sessionInfo.logged === 0 ? <p className="info-msg">
-                        Please log in <a href="/login">here</a> before ordering. Don't have an account yet? Create one <a href="/register">here</a>.
-                     </p> : null}
+                    {sessionInfo.logged === 0 ? <>
+                        <div className="order-button-container">
+                            <button className="clear-cart-button" onClick={() => clearCart()}>Clear cart</button>
+                        </div>
+                        <p className="info-msg">
+                            Please log in <a href="/login">here</a> before ordering. Don't have an account yet? Create one <a href="/register">here</a>.
+                     </p>
+                    </> : null}
                 </div>
             )
         }
