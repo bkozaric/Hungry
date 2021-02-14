@@ -189,11 +189,17 @@ html {
   font-weight: 600;
   width: 22px;
   height: 22px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   top: -9px;
   right: -9px;
   background-color: #c84720;
   border-radius: 50%;
   z-index: 2;
+  -webkit-transition: all 100ms ease-in-out;
+  transition: all 100ms ease-in-out;
 }
 
 .navigation ul {
@@ -244,6 +250,13 @@ html {
 .navigation ul li:hover {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
+}
+
+.navigation ul li:hover .cart-indicator {
+  border-radius: 50% 50% 0 0;
+  z-index: -2;
+  top: -14px;
+  right: 0px;
 }
 
 .navigation ul li:hover::after {

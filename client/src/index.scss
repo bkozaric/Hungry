@@ -135,11 +135,13 @@ html{
         font-weight: 600;
         width: 22px;
         height: 22px;
+        user-select: none;
         top: -9px;
         right: -9px;
         background-color: rgb(200, 71, 32);
         border-radius: 50%;
         z-index: 2;
+        transition: all 100ms ease-in-out;
     }
 
     ul{
@@ -184,6 +186,12 @@ html{
 
             &:hover{
                 transform: scale(1.1);
+                .cart-indicator{
+                    border-radius: 50% 50% 0 0;
+                    z-index: -2;
+                    top: -14px;
+                    right: 0px;
+                }
 
                 &::after{
                     position: absolute;
