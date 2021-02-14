@@ -43,8 +43,12 @@ const Admin = () => {
         }
         return null;
     }
+    if (sessionInfo.isAdmin === false) {
+        return (<div className="auth-container">
+            <p className="error-msg">You do not have sufficent permissions to access this page.</p>
+        </div>)
+    }
     return (<div className="auth-container">
-        <p className="error-msg">You do not have sufficent permissions to access this page.</p>
     </div>)
 
 }

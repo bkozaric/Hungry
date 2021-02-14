@@ -136,15 +136,14 @@ const Cart = ({ updateCart }) => {
                         <p><b>+ Delivery:</b> FREE</p>
                         <h3>Total: ${cartTotal}</h3>
                     </div>
-                    {sessionInfo.logged ?
+                    {sessionInfo.logged === 1 ?
                         <div className="order-button-container">
                             <button className="clear-cart-button" onClick={() => clearCart()}>Clear cart</button>
                             <button className="submit-order-button" onClick={() => orderFood()}>Order</button>
-                        </div>
-                        :
-                        <p className="info-msg">
-                            Please log in <a href="/login">here</a> before ordering. Don't have an account yet? Create one <a href="/register">here</a>.
-                     </p>}
+                        </div> : null}
+                    {sessionInfo.logged === 0 ? <p className="info-msg">
+                        Please log in <a href="/login">here</a> before ordering. Don't have an account yet? Create one <a href="/register">here</a>.
+                     </p> : null}
                 </div>
             )
         }
