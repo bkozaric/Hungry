@@ -1447,6 +1447,14 @@ label{
     
     }
 
+    .header-container{
+        background: none;
+
+        .show-food-container a {
+            padding-left: 0;
+        }
+    }
+
     .food-container{    
         .food-card{
             border-radius: 0;

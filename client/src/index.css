@@ -1850,6 +1850,12 @@ label {
     width: 100%;
     margin: 0 auto;
   }
+  .header-container {
+    background: none;
+  }
+  .header-container .show-food-container a {
+    padding-left: 0;
+  }
   .food-container .food-card {
     border-radius: 0;
   }
