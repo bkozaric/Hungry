@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMinus } from '@fortawesome/free-solid-svg-icons'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
-const Cart = () => {
+const Cart = ({ updateCart }) => {
 
     const [cart, setCart] = useState([])
     const [cartFetched, setCartFetched] = useState(false)
@@ -78,7 +78,6 @@ const Cart = () => {
                 return prevCart.filter((food) => { return food._id !== fId })
             })
         }
-
     }
 
     useEffect(() => {
@@ -88,8 +87,10 @@ const Cart = () => {
     useEffect(() => {
         if (cart.length > 0) {
             calculateTotal();
+            updateCart();
         }
         localStorage.setItem("cart", JSON.stringify(cart));
+        updateCart();
     }, [cart])
 
     if (success) {

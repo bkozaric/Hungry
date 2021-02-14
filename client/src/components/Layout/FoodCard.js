@@ -2,11 +2,10 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUtensils } from '@fortawesome/free-solid-svg-icons'
 
-const FoodCard = ({ food, id }) => {
+const FoodCard = ({ food, id, showPopup, updateCart }) => {
 
     const addToCart = (e, newFood) => {
         e.stopPropagation()
-
         let cartCurrent = JSON.parse(localStorage.getItem("cart"));
         if (!cartCurrent) {
             cartCurrent = [];
@@ -24,8 +23,9 @@ const FoodCard = ({ food, id }) => {
                 cartCurrent.push({ ...newFood, amount: 1 });
             }
         }
-
+        showPopup(newFood);
         localStorage.setItem("cart", JSON.stringify(cartCurrent));
+        updateCart();
 
     }
 
@@ -39,6 +39,7 @@ const FoodCard = ({ food, id }) => {
                 <p className="food-price">${food.price}</p>
                 <button onClick={(e) => addToCart(e, food)} className="add-to-cart"><FontAwesomeIcon icon={faUtensils} /></button>
             </div>
+
         </div>
     )
 }

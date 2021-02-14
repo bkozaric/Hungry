@@ -91,9 +91,13 @@ html{
         height: 100%;
         a{
             text-decoration: none;
-            margin-left: 140px;
+            padding-left: 140px;
             font-size: 32px;
             color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
 
             &:hover{
                 animation: spread 600ms ease-in-out 0ms infinite both;
@@ -102,11 +106,41 @@ html{
     }
 }
 
+.cart-add-popup{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    left: 0;
+    font-size: 18px;
+    width: 100vw;
+    color: white;
+    animation: popup 3000ms ease-in 0ms both;
+    background-color: #c84720;
+}
+
 .navigation{
     display: flex;
     height: 100%;
     align-items: center;
     justify-content: center;
+
+    .cart-indicator{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-weight: 600;
+        width: 22px;
+        height: 22px;
+        top: -9px;
+        right: -9px;
+        background-color: rgb(200, 71, 32);
+        border-radius: 50%;
+        z-index: 2;
+    }
 
     ul{
         list-style: none;
@@ -117,6 +151,15 @@ html{
             transition: all 150ms ease-in-out;
             &:hover{
                 transform: scale(1.1);
+            }
+
+            &.cart-li{
+                position: relative;
+                
+            }
+
+            &:last-child{
+                margin-left: 10px;
             }
 
 
@@ -823,6 +866,7 @@ label{
     .food-view-container{
         border-radius: 30px;
         margin-top: 100px;
+        margin-bottom: 200px;
         max-width: 600px;
 
         display: flex;
@@ -1300,6 +1344,22 @@ label{
             box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
             transform: scale(1.2);
         }
+    }
+}
+
+
+@keyframes popup{
+    0%{
+        height: 0px;
+    }
+    10% {
+        height: 65px;
+    }
+    90%{
+        height: 65px;
+    }
+    100%{
+        height: 0px;
     }
 }
 

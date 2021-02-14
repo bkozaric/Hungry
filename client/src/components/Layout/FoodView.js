@@ -3,11 +3,15 @@ import React, { useEffect, useState, useContext } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUtensils } from '@fortawesome/free-solid-svg-icons'
 
+import Expire from "react-expire";
+
 const FoodView = (props) => {
 
 
     const [food, setFood] = useState(null);
     const [foodFetched, setFoodFetched] = useState(false)
+
+    const [popUps, setPopUps] = useState([]);
 
     const getFood = async () => {
         try {
@@ -23,6 +27,7 @@ const FoodView = (props) => {
 
     const addToCart = (newFood) => {
         let cartCurrent = JSON.parse(localStorage.getItem("cart"));
+        setPopUps([...popUps, newFood.name])
         if (!cartCurrent) {
             cartCurrent = [];
             cartCurrent.push({ ...newFood, amount: 1 });
@@ -39,8 +44,8 @@ const FoodView = (props) => {
                 cartCurrent.push({ ...newFood, amount: 1 });
             }
         }
-
         localStorage.setItem("cart", JSON.stringify(cartCurrent));
+        props.updateCart();
     }
 
     useEffect(() => {
@@ -59,8 +64,10 @@ const FoodView = (props) => {
                             <p className="food-view-info-price">${food.price}</p>
                             <button onClick={(e) => addToCart(food)} className="add-to-cart"><FontAwesomeIcon icon={faUtensils} /></button>
                         </div>
-
                     </div>
+                    {popUps.map((popup, k) =>
+                        <Expire key={k} until={3000}>{(expired) => (expired ? null : <div className="cart-add-popup">{popup} added to cart</div>)}
+                        </Expire>)}
                 </div>
             )
         }

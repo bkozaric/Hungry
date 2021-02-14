@@ -9,8 +9,12 @@ import { faSignInAlt } from '@fortawesome/free-solid-svg-icons'
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 
 
-function Header() {
+function Header({ cartCount }) {
     const sessionInfo = useContext(SessionContext);
+    const [cart, setCart] = useState([])
+    const [cartFetched, setCartFetched] = useState(false)
+
+    /* const [cartCount, setCartCount] = useState(0);*/
 
     const logout = async () => {
         try {
@@ -34,7 +38,10 @@ function Header() {
                         <ul>
                             <li><a href="/admin"><FontAwesomeIcon className
                                 ="admin-button" icon={faTools} /></a></li>
-                            <li><a href="/cart"><FontAwesomeIcon icon={faShoppingCart} /></a></li>
+                            <li className="cart-li"><a href="/cart"><FontAwesomeIcon icon={faShoppingCart} />
+                            </a>
+                                <div className="cart-indicator">{cartCount}</div>
+                            </li>
                             <li><a href="/profile"><FontAwesomeIcon icon={faUser} /></a></li>
                             <li><a onClick={() => logout()} href="#"><FontAwesomeIcon icon={faSignOutAlt} /></a></li>
                         </ul>
@@ -49,7 +56,9 @@ function Header() {
                 </div>
                 <nav className="navigation">
                     <ul>
-                        <li><a href="/cart"><FontAwesomeIcon icon={faShoppingCart} /></a></li>
+                        <li className="cart-li"><a href="/cart"><FontAwesomeIcon icon={faShoppingCart} /></a>
+                            <div className="cart-indicator">{cartCount}</div>
+                        </li>
                         <li><a href="/profile"><FontAwesomeIcon icon={faUser} /></a></li>
                         <li><a onClick={() => logout()} href="#"><FontAwesomeIcon icon={faSignOutAlt} /></a></li>
                     </ul>
@@ -65,7 +74,9 @@ function Header() {
                 </div>
                 <nav className="navigation">
                     <ul>
-                        <li><a href="/cart"><FontAwesomeIcon icon={faShoppingCart} /></a></li>
+                        <li className="cart-li"><a href="/cart"><FontAwesomeIcon icon={faShoppingCart} /></a>
+                            <div className="cart-indicator">{cartCount}</div>
+                        </li>
                         <li><a href="/login"><FontAwesomeIcon icon={faSignInAlt} /></a></li>
                     </ul>
                 </nav>
@@ -79,9 +90,7 @@ function Header() {
                 <a href="/">I'm... Hungry...</a>
             </div>
             <nav className="navigation">
-                <ul>
-
-                </ul>
+                <ul></ul>
             </nav>
         </div>
     );
