@@ -1450,8 +1450,12 @@ label{
     .header-container{
         background: none;
 
+        .navigation{
+            padding-right: 15px;
+        }
+
         .show-food-container a {
-            padding-left: 0;
+            padding-left: 15px;
         }
     }
 

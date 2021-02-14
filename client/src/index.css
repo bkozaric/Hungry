@@ -1853,8 +1853,11 @@ label {
   .header-container {
     background: none;
   }
+  .header-container .navigation {
+    padding-right: 15px;
+  }
   .header-container .show-food-container a {
-    padding-left: 0;
+    padding-left: 15px;
   }
   .food-container .food-card {
     border-radius: 0;
