@@ -148,7 +148,7 @@ class User {
                         from: '"Hungry" <hungryuser2021@gmail.com>', // sender address
                         to: email, // list of receivers
                         subject: "Please verify your account", // Subject line
-                        html: `<h2>Hello ${firstName}</h2><p>To finish the registration process please verify your account by click on <a href="http://localhost:3000/verify/${token}">this</a> link.</p><p>- Hungry Ltd.</p>`, // html body
+                        html: `<h2>Hello ${firstName}</h2><p>To finish the registration process please verify your account by click on <a href="http://${process.env.cur_host}/verify/${token}">this</a> link.</p><p>- Hungry Ltd.</p>`, // html body
                     });
                     return res.status(200).json({ success: 1, message: "User created successfully" });
                 }
