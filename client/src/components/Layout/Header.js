@@ -60,7 +60,7 @@ function Header({ cartCount }) {
                             <div className="cart-indicator">{cartCount}</div>
                         </li>
                         <li className="profile-li"><a href="/profile"><FontAwesomeIcon icon={faUser} /></a></li>
-                        <li className="login-li"><a onClick={() => logout()} href="#"><FontAwesomeIcon icon={faSignOutAlt} /></a></li>
+                        <li className="logout-li"><a onClick={() => logout()} href="#"><FontAwesomeIcon icon={faSignOutAlt} /></a></li>
                     </ul>
                 </nav>
             </div>
