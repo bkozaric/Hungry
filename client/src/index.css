@@ -548,9 +548,30 @@ label {
   cursor: pointer;
 }
 
+.food-container .food-card .food-info .add-to-cart::before {
+  content: "Add to cart";
+  font-size: 14px;
+  position: absolute;
+  left: 0px;
+  top: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: all 160ms ease-in-out;
+  transition: all 160ms ease-in-out;
+}
+
 .food-container .food-card .food-info .add-to-cart:hover {
   -webkit-transform: scale(1.25);
           transform: scale(1.25);
+}
+
+.food-container .food-card .food-info .add-to-cart:hover::before {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  left: -70px;
 }
 
 .cart-container {
@@ -1212,9 +1233,30 @@ label {
   cursor: pointer;
 }
 
+.food-view-wrapper .food-view-container .food-view-info .add-to-cart::before {
+  content: "Add to cart";
+  font-size: 14px;
+  position: absolute;
+  left: 0px;
+  top: 7px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: all 160ms ease-in-out;
+  transition: all 160ms ease-in-out;
+}
+
 .food-view-wrapper .food-view-container .food-view-info .add-to-cart:hover {
   -webkit-transform: scale(1.15);
           transform: scale(1.15);
+}
+
+.food-view-wrapper .food-view-container .food-view-info .add-to-cart:hover::before {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  left: -70px;
 }
 
 .admin-wrapper {
@@ -1641,6 +1683,7 @@ label {
       -ms-flex-direction: column;
           flex-direction: column;
   width: 500px;
+  max-width: 100%;
 }
 
 .admin-detailed-user-info .user-details-row {
@@ -1711,6 +1754,7 @@ label {
 
 .new-food-form {
   width: 350px;
+  max-width: 100%;
 }
 
 .modal-container {
@@ -1728,6 +1772,8 @@ label {
   width: -moz-fit-content;
   width: fit-content;
   max-width: 100vw;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   background-color: var(--mainYellow);
@@ -1973,6 +2019,13 @@ label {
     width: 100%;
     margin: 0 auto;
   }
+  .modal-container {
+    padding: 50px 10px;
+    width: 100vw;
+  }
+  .modal-container .new-food-form, .modal-container .admin-detailed-user-info {
+    width: 100%;
+  }
   .header-container {
     background: none;
   }
@@ -1992,6 +2045,13 @@ label {
             transform: scale(1);
   }
   .food-container .food-card .food-image img {
+    border-radius: 0;
+  }
+  .food-view-wrapper .food-view-container {
+    border-radius: 0;
+    max-width: none;
+  }
+  .food-view-wrapper .food-view-container .food-view-image {
     border-radius: 0;
   }
   .cart-container .order-button-container {
