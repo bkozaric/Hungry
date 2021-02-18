@@ -21,6 +21,10 @@ const foodSchema = new mongoose.Schema(
             type: String,
             required: true
         },
+        hidden: {
+            type: String,
+            default: false
+        },
         history: {
             type: Array,
             default: [],

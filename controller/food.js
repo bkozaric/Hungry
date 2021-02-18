@@ -4,9 +4,33 @@ const fetch = require("node-fetch");
 
 class Food {
     async getFoods(req, res) {
+
+
         try {
             let Foods = await foodModel
-                .find().select("name description price image")
+                .find({ hidden: "false" }).select("name description price image")
+                .sort({ _id: 1 });
+            if (Foods) {
+                return res.status(200).json(Foods);
+            }
+        } catch (err) {
+            return res.status(500).json({ message: err });
+        }
+    }
+
+    async getFoodsHidden(req, res) {
+
+        if (!req.session.userId) {
+            return res.status(403).json({ success: 0, message: "Access denied" });
+        }
+
+        if (!req.session.isAdmin) {
+            return res.status(403).json({ message: "Insufficent permissions" });
+        }
+
+        try {
+            let Foods = await foodModel
+                .find().select("name description price image hidden")
                 .sort({ _id: 1 });
             if (Foods) {
                 return res.status(200).json(Foods);
@@ -96,14 +120,17 @@ class Food {
         }
     }
 
-    async deleteFood(req, res) {
-        if (!req.params.uId || !req.params.fId) {
+    async changeFoodStatus(req, res) {
+
+        let { uId, fId, newState } = req.body;
+
+        if (!uId || !fId || !newState) {
             return res.status(400).json({ success: 0, message: "All fields are required" });
         }
         if (!req.session.userId) {
             return res.status(403).json({ success: 0, message: "Access denied" });
         }
-        if (req.params.uId != req.session.userId) {
+        if (uId != req.session.userId) {
             return res.status(401).json({ success: 0, message: "Access denied" });
         }
         if (!req.session.isAdmin) {
@@ -111,9 +138,9 @@ class Food {
         }
 
         try {
-            let Food = await foodModel.findByIdAndDelete(req.params.fId);
+            let Food = await foodModel.findByIdAndUpdate(fId, { hidden: newState }, { useFindAndModify: false });
             if (Food) {
-                return res.status(200).json({ success: 1, message: "Food deleted." });
+                return res.status(200).json({ success: 1, message: "Food status updated succesfully." });
             }
             return res.status(404).json({ message: "Food doesn't exist" })
         } catch (err) {

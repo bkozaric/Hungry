@@ -1161,6 +1161,11 @@ label{
             .food-item-row{
                 height: 40px;
 
+                .hidden-food{
+                    text-decoration:line-through;
+                    color: rgb(179, 12, 12);
+                }
+
                 .food-actions{
                     display: flex;
                     column-gap: 10px;

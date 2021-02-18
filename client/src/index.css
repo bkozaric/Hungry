@@ -1448,6 +1448,11 @@ label {
       grid-template-columns: 25% 10% 50% 15%;
 }
 
+.admin-wrapper .admin-dashboard .admin-list-foods .food-item-row .hidden-food {
+  text-decoration: line-through;
+  color: #b30c0c;
+}
+
 .admin-wrapper .admin-dashboard .admin-list-foods .food-item-row .food-actions {
   display: -webkit-box;
   display: -ms-flexbox;
