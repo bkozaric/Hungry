@@ -53,7 +53,7 @@ const FoodView = (props) => {
     }, [])
 
     if (foodFetched) {
-        if (food) {
+        if (food?.name) {
             return (
                 <div className="food-view-wrapper">
                     <div className="food-view-container">
@@ -70,6 +70,14 @@ const FoodView = (props) => {
                         </Expire>)}
                 </div>
             )
+        }
+        else {
+            return (
+                <div className="food-view-wrapper">
+                    <div className="food-view-container">
+                        <div className="error-msg">This item does not exist.</div>
+                    </div>
+                </div>)
         }
         return null;
     }

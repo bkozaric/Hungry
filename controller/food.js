@@ -43,9 +43,12 @@ class Food {
     async getFood(req, res) {
         try {
             let Food = await foodModel
-                .findById(req.params.fId).select("name description price image");
-            if (Food) {
-                return res.status(200).json(Food);
+                .find({ _id: req.params.fId, hidden: "false" }).select("name description price image");
+            if (Food.length > 0) {
+                return res.status(200).json(Food[0]);
+            }
+            else {
+                return res.status(404).json({ message: "Food doesn't exist" })
             }
         } catch (err) {
             return res.status(500).json({ message: err })
