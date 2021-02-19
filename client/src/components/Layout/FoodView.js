@@ -45,7 +45,7 @@ const FoodView = (props) => {
             }
         }
         localStorage.setItem("cart", JSON.stringify(cartCurrent));
-        props.updateCart();
+        props.updateCart(false);
     }
 
     useEffect(() => {

@@ -32,6 +32,7 @@ const Cart = ({ updateCart }) => {
                         setOrderId(data.orderId)
                         setSuccess(true);
                         setCart([]);
+                        updateCart(true);
                     }
                 });
         }
@@ -47,6 +48,7 @@ const Cart = ({ updateCart }) => {
     const clearCart = () => {
         localStorage.removeItem("cart");
         setCart([]);
+        updateCart(true);
     }
 
     const getCart = () => {
@@ -87,10 +89,10 @@ const Cart = ({ updateCart }) => {
     useEffect(() => {
         if (cart.length > 0) {
             calculateTotal();
-            updateCart();
+            updateCart(true);
         }
         localStorage.setItem("cart", JSON.stringify(cart));
-        updateCart();
+        updateCart(false);
     }, [cart])
 
     if (success) {

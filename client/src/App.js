@@ -38,20 +38,27 @@ function App() {
     setCartCount(cart.reduce((cTotal, food) => { return food.amount + cTotal }, 0));
   }
 
-  const updateCart = () => {
-    let cartCurrent = JSON.parse(localStorage.getItem("cart"));
-    if (!cartCurrent) {
-      cartCurrent = [];
-      setCart([])
+  const updateCart = (forceEmpty) => {
+    if (forceEmpty) {
+      setCart([]);
+      setCartCount(0);
     }
     else {
-      setCart(cartCurrent);
+      let cartCurrent = JSON.parse(localStorage.getItem("cart"));
+      if (!cartCurrent) {
+        cartCurrent = [];
+        setCart([])
+      }
+      else {
+        setCart(cartCurrent);
+      }
     }
+
   }
 
   useEffect(() => {
     getSessionInfo();
-    updateCart();
+    updateCart(false);
   }, []);
 
   useEffect(() => {

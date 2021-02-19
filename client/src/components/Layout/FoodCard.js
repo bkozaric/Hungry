@@ -25,7 +25,7 @@ const FoodCard = ({ food, id, showPopup, updateCart }) => {
         }
         showPopup(newFood);
         localStorage.setItem("cart", JSON.stringify(cartCurrent));
-        updateCart();
+        updateCart(false);
 
     }
 
