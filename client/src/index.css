@@ -1823,39 +1823,39 @@ label {
 
 @-webkit-keyframes popup {
   0% {
-    -webkit-transform: translateX(350px);
-            transform: translateX(350px);
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
   }
   10% {
-    -webkit-transform: translateX(0px);
-            transform: translateX(0px);
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
   }
   90% {
-    -webkit-transform: translateX(0px);
-            transform: translateX(0px);
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
   }
   100% {
-    -webkit-transform: translateX(350px);
-            transform: translateX(350px);
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
   }
 }
 
 @keyframes popup {
   0% {
-    -webkit-transform: translateX(350px);
-            transform: translateX(350px);
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
   }
   10% {
-    -webkit-transform: translateX(0px);
-            transform: translateX(0px);
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
   }
   90% {
-    -webkit-transform: translateX(0px);
-            transform: translateX(0px);
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
   }
   100% {
-    -webkit-transform: translateX(350px);
-            transform: translateX(350px);
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
   }
 }
 
@@ -2035,6 +2035,11 @@ label {
   .container {
     width: 100%;
     margin: 0 auto;
+  }
+  .cart-add-popup {
+    top: 0;
+    width: 100vw;
+    z-index: 1000;
   }
   .modal-container {
     padding: 50px 10px;

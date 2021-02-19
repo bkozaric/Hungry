@@ -1469,16 +1469,16 @@ label{
 
 @keyframes popup{
     0%{
-        transform: translateX(350px);
+        transform: translateX(100%);
     }
     10% {
-        transform: translateX(0px);
+        transform: translateX(0%);
     }
     90%{
-        transform: translateX(0px);
+        transform: translateX(0%);
     }
     100%{
-        transform: translateX(350px);
+        transform: translateX(100%);
     }
 }
 
@@ -1579,6 +1579,12 @@ label{
         width:100%;
         margin: 0 auto;
     
+    }
+
+    .cart-add-popup{
+        top:0;
+        width: 100vw;
+        z-index: 1000;
     }
 
     .modal-container{
