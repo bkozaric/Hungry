@@ -45,7 +45,7 @@ const ManageUsers = ({ sessionInfo }) => {
                     </div>
                     {users.map((user, k) => <div className="user-item-row" key={k}>
                         <div>{user._id}</div>
-                        <div>{user.firstName} {user.lastName}</div>
+                        <div className={user.userRole === 1 ? "has-admin-role" : null}>{user.firstName} {user.lastName}</div>
                         <div className="user-actions">
                             <FontAwesomeIcon onClick={() => showUserInfo({ ...user })} icon={faUserCog} />
                         </div>

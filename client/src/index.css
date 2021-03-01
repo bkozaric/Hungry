@@ -554,8 +554,10 @@ label {
 
 .food-container .food-card .food-info .add-to-cart::before {
   content: "Add to cart";
+  color: gold;
   font-size: 14px;
   position: absolute;
+  opacity: 0;
   left: 0px;
   top: 5px;
   overflow: hidden;
@@ -565,6 +567,7 @@ label {
           transform: scale(0);
   -webkit-transition: all 160ms ease-in-out;
   transition: all 160ms ease-in-out;
+  z-index: -2;
 }
 
 .food-container .food-card .food-info .add-to-cart:hover {
@@ -575,6 +578,7 @@ label {
 .food-container .food-card .food-info .add-to-cart:hover::before {
   -webkit-transform: scale(1);
           transform: scale(1);
+  opacity: 1;
   left: -70px;
 }
 
@@ -664,7 +668,7 @@ label {
   background-color: var(--darkOrange);
   text-transform: uppercase;
   font-weight: bold;
-  width: 200px;
+  width: 130px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
@@ -691,7 +695,7 @@ label {
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
-  width: 90%;
+  width: 100%;
   margin-top: .5em;
 }
 
@@ -1327,7 +1331,7 @@ label {
           box-sizing: border-box;
 }
 
-.admin-wrapper .admin-dashboard .add-food-button {
+.admin-wrapper .admin-dashboard .add-food-button, .admin-wrapper .admin-dashboard .filter-orders-button {
   margin-top: 30px;
   padding: 15px 20px;
   border: none;
@@ -1342,7 +1346,7 @@ label {
   font-weight: 600;
 }
 
-.admin-wrapper .admin-dashboard .add-food-button:hover {
+.admin-wrapper .admin-dashboard .add-food-button:hover, .admin-wrapper .admin-dashboard .filter-orders-button:hover {
   letter-spacing: 1px;
   -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.219);
           box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.219);
@@ -1364,6 +1368,11 @@ label {
   display: grid;
   -ms-grid-columns: 40% 40% 20%;
       grid-template-columns: 40% 40% 20%;
+}
+
+.admin-wrapper .admin-dashboard .admin-list-users .user-item-row .has-admin-role {
+  -webkit-animation: changeColor 2000ms ease-in-out 0ms infinite both;
+          animation: changeColor 2000ms ease-in-out 0ms infinite both;
 }
 
 .admin-wrapper .admin-dashboard .admin-list-users .user-item-row .user-actions {
@@ -1527,7 +1536,7 @@ label {
 
 .admin-wrapper .admin-dashboard .order-card {
   width: 100%;
-  height: 35px;
+  max-height: 35px;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 35% 15% 20% 20%;
@@ -1538,17 +1547,16 @@ label {
   -ms-flex-pack: distribute;
       justify-content: space-around;
   cursor: pointer;
-  -webkit-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
+  -webkit-transition: all 500ms ease-in-out;
+  transition: all 500ms ease-in-out;
 }
 
 .admin-wrapper .admin-dashboard .order-card.show-details {
   -ms-grid-rows: 35px 1fr;
       grid-template-rows: 35px 1fr;
   background-color: var(--mainYellow);
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .admin-wrapper .admin-dashboard .order-card.header-row {
@@ -1764,6 +1772,53 @@ label {
 .new-food-form {
   width: 350px;
   max-width: 100%;
+}
+
+.filter-orders-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  row-gap: 25px;
+}
+
+.filter-orders-form .filter-orders-row .date-filter-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 30px;
+          column-gap: 30px;
+}
+
+.filter-orders-form .filter-orders-row .date-filter-wrapper > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  row-gap: 10px;
+}
+
+.filter-orders-form .filter-orders-row p {
+  padding: 0;
+  margin: 5px 0px;
+  font-weight: 600;
+}
+
+.filter-orders-form .filter-orders-row .filter-order-status-dropdown {
+  padding: 5px 0px;
+  width: 150px;
 }
 
 .modal-container {
@@ -2075,6 +2130,11 @@ label {
   }
   .food-view-wrapper .food-view-container .food-view-image {
     border-radius: 0;
+  }
+  .cart-container .cart-total-container {
+    padding: 0px 10px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
   }
   .cart-container .order-button-container {
     -webkit-box-orient: vertical;

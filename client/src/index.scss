@@ -450,8 +450,10 @@ label{
 
                 &::before{
                     content: "Add to cart";
+                    color: gold;
                     font-size: 14px;
                     position: absolute;
+                    opacity: 0;
                     left:0px;
                     top: 5px;
                     overflow: hidden;
@@ -459,6 +461,7 @@ label{
                     white-space: nowrap;
                     transform: scale(0);
                     transition: all 160ms ease-in-out;
+                    z-index: -2;
                 }
 
                 &:hover{
@@ -466,6 +469,7 @@ label{
 
                     &::before{
                         transform: scale(1);
+                        opacity: 1;
                         left:-70px;
                     }
                 }
@@ -538,7 +542,7 @@ label{
             background-color: var(--darkOrange);
             text-transform: uppercase;
             font-weight: bold;
-            width: 200px;
+            width: 130px;
             box-sizing: border-box;
 
             &.submit-order-button{
@@ -558,7 +562,7 @@ label{
         text-align: right;
         flex-direction: column;
         align-items: flex-end;
-        width: 90%;
+        width: 100%;
         margin-top: .5em;
         p,h3{
             margin: .3em 0;
@@ -1069,7 +1073,7 @@ label{
         box-sizing: border-box;
 
 
-        .add-food-button{
+        .add-food-button, .filter-orders-button{
             margin-top: 30px;
             padding: 15px 20px;
             border: none;
@@ -1094,6 +1098,10 @@ label{
             flex-direction: column;
             .user-item-row{
                 height: 40px;
+
+                .has-admin-role{
+                    animation: changeColor 2000ms ease-in-out 0ms infinite both;
+                }
 
                 .user-actions{
                     display: flex;
@@ -1237,7 +1245,7 @@ label{
 
         .order-card{
             width: 100%;
-            height: 35px;
+            max-height: 35px;
             display: grid;
             //grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
             grid-template-columns: 35% 15% 20% 20%;
@@ -1247,12 +1255,13 @@ label{
             justify-content: space-around;
             cursor: pointer;
 
-            transition: all 200ms ease-in-out;
+            transition: all 500ms ease-in-out;
 
             &.show-details{
                 grid-template-rows: 35px 1fr;  
                 background-color: var(--mainYellow);
-                height: fit-content;
+                max-height: 300px;
+                overflow-y: auto;
             }
 
             &.header-row{
@@ -1427,6 +1436,41 @@ label{
 .new-food-form{
     width: 350px;
     max-width: 100%;
+}
+
+.filter-orders-form{
+
+    display: flex;
+        flex-direction: column;
+        row-gap: 25px;
+
+    .filter-orders-row{
+
+
+        .date-filter-wrapper{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            column-gap: 30px;
+
+            &>div{
+                display: flex;
+                flex-direction: column;
+                row-gap: 10px;
+            }
+        }
+
+        p{
+            padding: 0;
+            margin: 5px 0px;
+            font-weight: 600;
+        }
+
+        .filter-order-status-dropdown{
+            padding: 5px 0px;
+            width: 150px;
+        }
+    }
 }
 
 .modal-container{
@@ -1641,6 +1685,11 @@ label{
     
 
     .cart-container{
+
+        .cart-total-container{
+            padding: 0px 10px;
+            box-sizing: border-box;
+        }
         .order-button-container{
             flex-direction: column;
             width: 100%;

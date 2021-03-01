@@ -7,7 +7,6 @@ import Expire from "react-expire";
 
 const FoodView = (props) => {
 
-
     const [food, setFood] = useState(null);
     const [foodFetched, setFoodFetched] = useState(false)
 
