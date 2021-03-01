@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState, useContext } from 'react';
-import { SessionContext } from '../../SessionContext';
+
+import { useSessionInfo } from "../../SessionContext";
 
 import Logout from "./Logout"
 
@@ -7,7 +8,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 const Register = () => {
-    const sessionInfo = useContext(SessionContext);
+    const sessionInfo = useSessionInfo();
 
     const [success, setSuccess] = useState(null);
     const [registrationMessage, setRegistrationMessage] = useState(null)

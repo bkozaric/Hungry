@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 
-import { SessionContext } from '../../SessionContext';
+import { useSessionInfo } from "../../SessionContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faTools } from '@fortawesome/free-solid-svg-icons'
@@ -10,11 +10,10 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 
 
 function Header({ cartCount }) {
-    const sessionInfo = useContext(SessionContext);
+
+    const sessionInfo = useSessionInfo();
     const [cart, setCart] = useState([])
     const [cartFetched, setCartFetched] = useState(false)
-
-    /* const [cartCount, setCartCount] = useState(0);*/
 
     const logout = async () => {
         try {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 
-import { SessionContext } from '../../SessionContext';
+import { useSessionInfo } from "../../SessionContext";
 import TabPicker from "./TabPicker";
 import UserActions from "./UserActions";
 import UserInfo from "./UserInfo";
@@ -10,7 +10,7 @@ import ChangeUserInfo from "./ChangeUserInfo";
 
 const Profile = (props) => {
 
-    const sessionInfo = useContext(SessionContext);
+    const sessionInfo = useSessionInfo();
 
     const [orders, setOrders] = useState([]);
     const [ordersFetched, setOrdersFetched] = useState(null);

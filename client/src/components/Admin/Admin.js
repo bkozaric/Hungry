@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { SessionContext } from '../../SessionContext';
+import { useSessionInfo } from "../../SessionContext";
 
 import TabPicker from "./TabPicker";
 import ManangeOrders from "./Orders/ManangeOrders";
@@ -7,7 +7,7 @@ import ManageFood from "./Foods/ManageFood"
 import ManageUsers from "./Users/ManageUsers"
 
 const Admin = () => {
-    const sessionInfo = useContext(SessionContext);
+    const sessionInfo = useSessionInfo();
 
     const [currentTab, setCurrentTab] = useState(0);
 

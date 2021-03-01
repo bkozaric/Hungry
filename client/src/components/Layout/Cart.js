@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { SessionContext } from '../../SessionContext';
+import { useSessionInfo } from "../../SessionContext";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMinus } from '@fortawesome/free-solid-svg-icons'
@@ -15,7 +15,7 @@ const Cart = ({ updateCart }) => {
     const [success, setSuccess] = useState(false);
     const [orderId, setOrderId] = useState(null)
 
-    const sessionInfo = useContext(SessionContext);
+    const sessionInfo = useSessionInfo();
 
     const orderFood = async () => {
         const reduceBody = cart.map((food) => { return { id: food._id, amount: food.amount } });
