@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import OrderCard from "./OrderCard";
 import FilterOrdersModal from "./FilterOrdersModal"
+import { date } from 'yup/lib/locale';
 
 const ManangeOrders = ({ sessionInfo }) => {
 
@@ -23,23 +24,66 @@ const ManangeOrders = ({ sessionInfo }) => {
 
     const filterOrders = async (statusFilter, dateFilter) => {
         setModalToggle(false);
-        if (statusFilter) {
-            setOrders(ordersConst.filter(order => { return order.status === statusFilter }))
-        }
-        if (dateFilter) {
-            if (dateFilter.dateSelected) {
-                if (dateFilter.filterType === "bw") {
+
+
+        if (dateFilter.filterType === "bw") {
+            if (dateFilter.dateSelected?.fromDate && dateFilter.dateSelected?.toDate) {
+                if (statusFilter.length) {
+                    setOrders(ordersConst.filter(order => { return new Date(order.createdAt) >= new Date(dateFilter.dateSelected.fromDate) && new Date(order.createdAt) <= new Date(dateFilter.dateSelected.toDate) && statusFilter.includes(order.status) }))
+                }
+                else {
                     setOrders(ordersConst.filter(order => { return new Date(order.createdAt) >= new Date(dateFilter.dateSelected.fromDate) && new Date(order.createdAt) <= new Date(dateFilter.dateSelected.toDate) }))
                 }
-                if (dateFilter.filterType === "bf") {
+
+            }
+            else {
+                if (statusFilter.length) {
+                    setOrders(ordersConst.filter(order => { return statusFilter.includes(order.status) }))
+                }
+                else {
+                    setOrders(ordersConst)
+                }
+            }
+        }
+        if (dateFilter.filterType === "bf") {
+            if (Object.keys(dateFilter.dateSelected).length) {
+                if (statusFilter.length) {
+                    setOrders(ordersConst.filter(order => { return new Date(order.createdAt) <= new Date(dateFilter.dateSelected) && statusFilter.includes(order.status) }))
+                }
+                else {
                     setOrders(ordersConst.filter(order => { return new Date(order.createdAt) <= new Date(dateFilter.dateSelected) }))
                 }
-                if (dateFilter.filterType === "af") {
-                    setOrders(ordersConst.filter(order => { return new Date(order.createdAt) >= new Date(dateFilter.dateSelected) }))
+
+            }
+            else {
+                if (statusFilter.length) {
+                    setOrders(ordersConst.filter(order => { return statusFilter.includes(order.status) }))
+                }
+                else {
+                    setOrders(ordersConst)
                 }
             }
 
         }
+        if (dateFilter.filterType === "af") {
+            if (Object.keys(dateFilter.dateSelected).length) {
+                if (statusFilter.length) {
+                    setOrders(ordersConst.filter(order => { return new Date(order.createdAt) >= new Date(dateFilter.dateSelected) && statusFilter.includes(order.status) }))
+                }
+                else {
+                    setOrders(ordersConst.filter(order => { return new Date(order.createdAt) >= new Date(dateFilter.dateSelected) }))
+                }
+            }
+            else {
+                if (statusFilter.length) {
+                    setOrders(ordersConst.filter(order => { return statusFilter.includes(order.status) }))
+                }
+                else {
+                    setOrders(ordersConst)
+                }
+            }
+        }
+
     }
 
     useEffect(() => {
@@ -64,6 +108,7 @@ const ManangeOrders = ({ sessionInfo }) => {
     if (orders.length === 0 && ordersConst.length > 0) {
         return (<div className="admin-dashboard">
             <div className="info-msg">Your filters return 0 results...</div>
+            <button onClick={() => setOrders(ordersConst)} className="filter-orders-button">Clear Filters</button>
         </div>);
     }
     return (<div className="admin-dashboard" />);

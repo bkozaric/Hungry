@@ -80,7 +80,7 @@ html{
 
 .header-container{
     height: var(--headerHeight);
-    background: url("./static/logo.png");
+    background: url("./logo.png");
     background-repeat: no-repeat;
     background-size: auto 90%;
     background-position: 0% 50%;
@@ -1445,6 +1445,13 @@ label{
         row-gap: 25px;
 
     .filter-orders-row{
+
+        .status-checkboxes{
+            display: grid;
+            grid-template-columns: 50% 50%;
+            align-items: center;
+            gap: 10px;
+        }
 
 
         .date-filter-wrapper{

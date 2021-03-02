@@ -98,7 +98,7 @@ const Cart = ({ updateCart }) => {
     if (success) {
         return (
             <div className="cart-container">
-                <img className="delivery-man" src="https://www.pngkey.com/png/full/428-4282931_uber-for-food-delivery-food-delivery.png"></img>
+                <img className="delivery-man" src="/images/delivery.png"></img>
                 <p className="info-msg">Your food is on the way! Check the status of your order <a href={"/profile/orders/" + orderId}>here</a>.</p>
             </div>
         )
@@ -158,7 +158,7 @@ const Cart = ({ updateCart }) => {
             if (cartFetched) {
                 return (
                     <div className="cart-container">
-                        <img className="empty-plate" src="https://webstockreview.net/images/dinner-clipart-empty-plate-4.png"></img>
+                        <img className="empty-plate" src="/images/plate.png"></img>
                         <p className="info-msg">Oh no... Your plate is empty. Grab something to eat <a href="/">here</a>.</p>
                     </div>
                 )
