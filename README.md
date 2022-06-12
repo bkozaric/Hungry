@@ -39,14 +39,22 @@ Hungry uses a number of open source projects to work properly:
 ## Login/registration
 ![Login & registration](https://i.imgur.com/KAkJSdz.png)
 
-## Cart system
+# Cart system
+## Empty Cart
 ![Cart empty](https://i.imgur.com/1iVrCPg.png)
+## Cart as guest
 ![Cart as guest](https://i.imgur.com/ynsksw7.png)
+## Cart as logged in user
 ![Cart as logged in user](https://i.imgur.com/1Ay0n0A.png)
 
 ## Admin dashboard
+## Orders
 ![Orders](https://i.imgur.com/jKx06Rx.png)
+## Food items
 ![Food items](https://i.imgur.com/8brwJYX.png)
+## Adding new food
 ![Adding new food](https://i.imgur.com/kwFncr1.png)
+## Users list
 ![Users list](https://i.imgur.com/bPgzWRN.png)
+## Edit user
 ![Edit user](https://i.imgur.com/enFXNKq.png)
