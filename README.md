@@ -33,10 +33,10 @@ Hungry uses a number of open source projects to work properly:
 - concurrently - run multiple commands concurrently (in this case start the frontend and backend at the same time) 
 - Font Awesome - font and CSS framework, contains a suite of 675 pictographic icons for easy scalable vector graphics on websites
 
-## Main page
+# Main page
 ![Main page](https://i.imgur.com/gaBrMeI.png)
 
-## Login/registration
+# Login/registration
 ![Login & registration](https://i.imgur.com/KAkJSdz.png)
 
 # Cart system
@@ -47,7 +47,7 @@ Hungry uses a number of open source projects to work properly:
 ## Cart as logged in user
 ![Cart as logged in user](https://i.imgur.com/1Ay0n0A.png)
 
-## Admin dashboard
+# Admin dashboard
 ## Orders
 ![Orders](https://i.imgur.com/jKx06Rx.png)
 ## Food items
